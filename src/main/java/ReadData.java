@@ -7,9 +7,8 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ReadData {
     private String davlSBar;
@@ -23,10 +22,10 @@ public class ReadData {
 
     public static StringBuilder text = new StringBuilder();
 
-    public static List<String> dataNumZam = new ArrayList<>();
-    public static List<String> dataDavlSBar = new ArrayList<>();
-    public static List<String> dataTvx = new ArrayList<>();
-    public static List<String> dataNtk = new ArrayList<>();
+    public static Set<String> dataNumZam = new LinkedHashSet<>();
+    public static Set<String> dataDavlSBar = new LinkedHashSet<>();
+    public static Set<String> dataTvx = new LinkedHashSet<>();
+    public static Set<String> dataNtk = new LinkedHashSet<>();
 
 
     public ReadData(String davlSBar, String tVx, String ntk) {
@@ -43,6 +42,10 @@ public class ReadData {
 
 //            System.out.println(allDataText);
             extractData();
+            dataNumZam.forEach(System.out::println);
+            dataDavlSBar.forEach(System.out::println);
+            dataTvx.forEach(System.out::println);
+            dataNtk.forEach(System.out::println);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -72,18 +75,20 @@ public class ReadData {
                     }
                 }
             }
-            for (String s : dataNumZam) {
-                System.out.println(s);
-            }
-            for (String s : dataDavlSBar) {
-                System.out.println(s);
-            }
-            for (String s : dataTvx) {
-                System.out.println(s);
-            }
-            for (String s : dataNtk) {
-                System.out.println(s);
-            }
+
+
+//            for (String s : dataNumZam) {
+//                System.out.println(s);
+//            }
+//            for (String s : dataDavlSBar) {
+//                System.out.println(s);
+//            }
+//            for (String s : dataTvx) {
+//                System.out.println(s);
+//            }
+//            for (String s : dataNtk) {
+//                System.out.println(s);
+//            }
 
         }
     }
