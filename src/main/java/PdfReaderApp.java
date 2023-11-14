@@ -59,6 +59,25 @@ public class PdfReaderApp extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
     }
+    //    public static String readPDFPages(String s) throws IOException {
+//        PdfReader pdfReader;
+//        pdfReader = new PdfReader(s);
+//
+//        String getNumZam = "";
+//        String getDavlSBar = "";
+//        String gettVx = "";
+//        String ntk = "";
+//
+//        for (int i = 1; i <= pdfReader.getNumberOfPages(); i++) {
+//            TextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+//            text.append(PdfTextExtractor.getTextFromPage(pdfReader, i, strategy));
+//
+//        }
+//        pdfReader.close();
+//        System.out.println(text);
+//
+//        return text.toString();
+//    }
 
     private String getTextFromPdf(File file) throws IOException {
         try (PDDocument document = PDDocument.load(file)) {

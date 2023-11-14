@@ -148,13 +148,16 @@ public class Example extends JFrame implements ActionListener {
                 int ret = fileChooser.showOpenDialog(Example.this);
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     File[] listFiles = fileChooser.getSelectedFiles();
-                    try {
-                        for (File l : listFiles) {
-                            ReadData.readPDFPages(l.getAbsolutePath());
-                        }
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    for (File listFile : listFiles) {
+                        ReadData.read(listFile);
+//                    try {
+//                        for (File l : listFiles) {
+//                            ReadData.readPDFPages(l.getAbsolutePath());
+//                        }
                     }
+//                    catch(IOException ex){
+//                        throw new RuntimeException(ex);
+//                    }
                 }
             }
         });
