@@ -54,36 +54,38 @@ public class ReadData {
     public static void extractData() {
         String[] dataTextAll = allDataText.split("Инженер по испытаниям:");
 
-        for (int i = 0; i < dataTextAll.length; i++) {
-            String[] strArr = dataTextAll[i].split("\n");
-            for (int j = 0; j < strArr.length; j++) {
-                if (strArr[j].startsWith("№")) {
-                    dataNumZam.add(strArr[j]);
-                }
-                if (strArr[j].startsWith("Давл. с БРС")) {
-                    dataDavlSBar.add(strArr[j]);
-                }
-                if (strArr[j].startsWith("t*вх")) {
-                    dataTvx.add(strArr[j]);
-                }
-                if (strArr[j].startsWith("nтк") && !strArr[j].startsWith("nтк пр")) {
-                    dataNtk.add(strArr[j]);
+        if (Arrays.toString(dataTextAll).contains(Example.numberEngine) && Arrays.toString(dataTextAll).contains("Энергетические параметры")) {
+            for (int i = 0; i < dataTextAll.length; i++) {
+                String[] strArr = dataTextAll[i].split("\n");
+                for (int j = 0; j < strArr.length; j++) {
+                    if (strArr[j].startsWith("№")) {
+                        dataNumZam.add(strArr[j]);
+                    }
+                    if (strArr[j].startsWith("Давл. с БРС")) {
+                        dataDavlSBar.add(strArr[j]);
+                    }
+                    if (strArr[j].startsWith("t*вх")) {
+                        dataTvx.add(strArr[j]);
+                    }
+                    if (strArr[j].startsWith("nтк") && !strArr[j].startsWith("nтк пр")) {
+                        dataNtk.add(strArr[j]);
+                    }
                 }
             }
-        }
-        for(String s : dataNumZam) {
-            System.out.println(s);
-        }
-        for(String s : dataDavlSBar) {
-            System.out.println(s);
-        }
-        for(String s : dataTvx) {
-            System.out.println(s);
-        }
-        for(String s : dataNtk) {
-            System.out.println(s);
-        }
+            for (String s : dataNumZam) {
+                System.out.println(s);
+            }
+            for (String s : dataDavlSBar) {
+                System.out.println(s);
+            }
+            for (String s : dataTvx) {
+                System.out.println(s);
+            }
+            for (String s : dataNtk) {
+                System.out.println(s);
+            }
 
+        }
     }
 
     public static boolean checkNumberEngine(String s) {
