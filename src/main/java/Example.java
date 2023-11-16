@@ -123,20 +123,6 @@ public class Example extends JFrame implements ActionListener {
         selectFilesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                JFileChooser fileChooser = new JFileChooser();
-//                int result = fileChooser.showOpenDialog(Example.this);
-//                if (result == JFileChooser.APPROVE_OPTION) {
-//                    File selectedFile = fileChooser.getSelectedFile();
-//                    try {
-//                        String text = ReadData.read(selectedFile);
-//                        textArea.setText(text);
-//                        String s = inputPointA.getText();
-//                        System.out.println(s);
-//                    } catch (Exception ex) {
-//                        ex.printStackTrace();
-//                        JOptionPane.showMessageDialog(Example.this, "Error reading PDF file");
-//                    }
-//                }
                 pointA = inputPointA.getText();
                 pointB = inputPointB.getText();
                 pointD = inputPointD.getText();
@@ -150,15 +136,9 @@ public class Example extends JFrame implements ActionListener {
                     File[] listFiles = fileChooser.getSelectedFiles();
                     for (File listFile : listFiles) {
                         ReadData.read(listFile);
-//                    try {
-//                        for (File l : listFiles) {
-//                            ReadData.readPDFPages(l.getAbsolutePath());
-//                        }
                     }
-//                    catch(IOException ex){
-//                        throw new RuntimeException(ex);
-//                    }
                 }
+
             }
         });
 
