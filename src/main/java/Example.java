@@ -19,11 +19,14 @@ public class Example extends JFrame implements ActionListener {
     private JLabel labelOutData;
     public JButton selectFilesButton;
     public JTextArea textArea;
+    private JComboBox comboBox;
 
     public static String pointA = "";
     public static String pointB = "";
     public static String pointD = "";
     public static String numberEngine = "";
+
+    private String[] engineList = {"ВК-2500","ТВ3-117ВМ","ВК-2500П"};
 
 
     public Example() {
@@ -35,58 +38,62 @@ public class Example extends JFrame implements ActionListener {
         container = getContentPane();
         container.setLayout(null);
 
+        comboBox = new JComboBox<>(engineList);
+        comboBox.setBounds(50,60,100,20);
+        container.add(comboBox);
+
         labelTitle = new JLabel("Форма получения данных из PDF");
         labelTitle.setFont(new Font("Arial", Font.PLAIN, 30));
         labelTitle.setSize(500, 30);
-        labelTitle.setLocation(50, 30);
+        labelTitle.setLocation(50, 10);
         container.add(labelTitle);
 
         labelNumberEngine = new JLabel("Номер двигателя");
         labelNumberEngine.setFont(new Font("Arial", Font.PLAIN, 20));
         labelNumberEngine.setSize(200, 20);
-        labelNumberEngine.setLocation(30, 100);
+        labelNumberEngine.setLocation(30, 200);
         container.add(labelNumberEngine);
 
         inputNumberEngine = new JTextField();
         inputNumberEngine.setFont(new Font("Arial", Font.PLAIN, 15));
         inputNumberEngine.setSize(200, 20);
-        inputNumberEngine.setLocation(210, 100);
+        inputNumberEngine.setLocation(210, 200);
         container.add(inputNumberEngine);
 
         labelPointA = new JLabel("№ замера точка А");
         labelPointA.setFont(new Font("Arial", Font.PLAIN, 20));
         labelPointA.setSize(200, 20);
-        labelPointA.setLocation(30, 150);
+        labelPointA.setLocation(30, 250);
         container.add(labelPointA);
 
         inputPointA = new JTextField();
         inputPointA.setFont(new Font("Arial", Font.PLAIN, 15));
         inputPointA.setSize(200, 20);
-        inputPointA.setLocation(210, 150);
+        inputPointA.setLocation(210, 250);
         container.add(inputPointA);
 
         labelPointB = new JLabel("№ замера точка Б");
         labelPointB.setFont(new Font("Arial", Font.PLAIN, 20));
         labelPointB.setSize(200, 20);
-        labelPointB.setLocation(30, 200);
+        labelPointB.setLocation(30, 300);
         container.add(labelPointB);
 
         inputPointB = new JTextField();
         inputPointB.setFont(new Font("Arial", Font.PLAIN, 15));
         inputPointB.setSize(200, 20);
-        inputPointB.setLocation(210, 200);
+        inputPointB.setLocation(210, 300);
         container.add(inputPointB);
 
         labelPointD = new JLabel("№ замера точка Д");
         labelPointD.setFont(new Font("Arial", Font.PLAIN, 20));
         labelPointD.setSize(200, 20);
-        labelPointD.setLocation(30, 250);
+        labelPointD.setLocation(30, 350);
         container.add(labelPointD);
 
         inputPointD = new JTextField();
         inputPointD.setFont(new Font("Arial", Font.PLAIN, 15));
         inputPointD.setSize(200, 20);
-        inputPointD.setLocation(210, 250);
+        inputPointD.setLocation(210, 350);
         container.add(inputPointD);
 
         selectFilesButton = new JButton("Выбрать PDF файлы");
@@ -150,14 +157,18 @@ public class Example extends JFrame implements ActionListener {
                     File[] listFiles = fileChooser.getSelectedFiles();
                     for (File listFile : listFiles) {
                         ReadData.read(listFile);
-//                    try {
-//                        for (File l : listFiles) {
-//                            ReadData.readPDFPages(l.getAbsolutePath());
-//                        }
                     }
-//                    catch(IOException ex){
-//                        throw new RuntimeException(ex);
-//                    }
+
+                    String selectedBox = (String) comboBox.getSelectedItem();
+                    assert selectedBox != null;
+                    if (selectedBox.equals("ВК-2500")) {
+                        ReadData.extractDataVK2500();
+                    }
+
+
+//                    ReadData.extractDataVK2500();
+//
+//                    textArea.setText(ReadData.resultA);
                 }
             }
         });
