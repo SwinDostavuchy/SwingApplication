@@ -1,14 +1,12 @@
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
-import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ReadData {
     private String davlSBar;
@@ -21,6 +19,17 @@ public class ReadData {
     public static String resultA = "";
     public static String resultB = "";
     public static String resultD = "";
+    public static String resultC = "";
+
+    public static String resPointADavlSBar = "";
+    public static String resPointATvxB = "";
+    public static String resPointANtk = "";
+    public static String resPointBDavlSBar = "";
+    public static String resPointBTvxB = "";
+    public static String resPointBNtk = "";
+    public static String resPointDTvxB = "";
+    public static String resPointDDavlSBar = "";
+    public static String resPointDNtk = "";
 
     public static String allDataText = "";
     public static String allDataACT = "";
@@ -36,15 +45,50 @@ public class ReadData {
         this.ntk = ntk;
     }
 
-    public static void readAct(File file) {
+    public static void readActVK2500(File file) {
         try (PDDocument document = PDDocument.load(file)) {
             PDFTextStripper stripper = new PDFTextStripper();
             allDataACT = stripper.getText(document);
 
+            String[] dataTextAct = allDataACT.split("Инженер по испытаниям:");
+
+            StringBuilder sb = new StringBuilder();
+            Set<String> dataFactParam = new LinkedHashSet<>();
+            String c = "";
+
+            if (Arrays.toString(dataTextAct).contains(Example.numberEngine) && Arrays.toString(dataTextAct).contains("Характеристика")) {
+                for (int i = 0; i < dataTextAct.length; i++) {
+                    String[] strArr = dataTextAct[i].split("\n");
+                    for (int j = 0; j < strArr.length; j++) {
+                        if (strArr[j].startsWith("Номера замеров:")) {
+                            sb.append(strArr[j].substring(16));
+                        }
+                        if (strArr[j].startsWith("Факт.")) {
+                            dataFactParam.add(strArr[j].substring(6));
+                        }
+                    }
+                }
+            }
+            System.out.println(sb);
+
+            String strAllFactP = Arrays.toString(dataFactParam.toArray()).replaceAll("[\\[\\]\\s]", " ");
+//            System.out.println("first " + strAllFactP);
+//            String str2 = strAllFactP.replaceAll(",", "");
+            String[] arr = strAllFactP.split(",");
+//            for (String t : arr) {
+//                System.out.print(t);
+//            }
+            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(arr));
+            String pointStr = arrayList.get(3).substring(6,10);
+
+            resultC += pointStr;
+
+            System.out.println("poinc c: " + pointStr);
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(allDataACT);
     }
 
     public static void readTxt(File file) throws IOException {
@@ -61,20 +105,52 @@ public class ReadData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsoluteFile()))) {
-//            StringBuilder sb = new StringBuilder();
-//            String line = br.readLine();
-//
-//            while (line != null) {
-//                sb.append(line);
-//                sb.append(System.lineSeparator());
-//                line = br.readLine();
+    }
+
+    public static void readActVK2500P(File file) {
+        try (PDDocument document = PDDocument.load(file)) {
+            PDFTextStripper stripper = new PDFTextStripper();
+            allDataACT = stripper.getText(document);
+
+            String[] dataTextAct = allDataACT.split("Инженер по испытаниям:");
+
+            StringBuilder sb = new StringBuilder();
+            Set<String> dataFactParam = new LinkedHashSet<>();
+            String c = "";
+
+            if (Arrays.toString(dataTextAct).contains(Example.numberEngine) && Arrays.toString(dataTextAct).contains("Характеристика")) {
+                for (int i = 0; i < dataTextAct.length; i++) {
+                    String[] strArr = dataTextAct[i].split("\n");
+                    for (int j = 0; j < strArr.length; j++) {
+                        if (strArr[j].startsWith("Номера замеров:")) {
+                            sb.append(strArr[j].substring(16));
+                        }
+                        if (strArr[j].startsWith("Факт.")) {
+                            dataFactParam.add(strArr[j].substring(6));
+                        }
+                    }
+                }
+            }
+            System.out.println(sb);
+
+            String strAllFactP = Arrays.toString(dataFactParam.toArray()).replaceAll("[\\[\\]\\s]", " ");
+//            System.out.println("first " + strAllFactP);
+//            String str2 = strAllFactP.replaceAll(",", "");
+            String[] arr = strAllFactP.split(",");
+//            for (String t : arr) {
+//                System.out.print(t);
 //            }
-//            String everything = sb.toString();
-//            System.out.println(everything);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(arr));
+            String pointStr = arrayList.get(4).substring(6,10);
+
+            resultC += pointStr;
+
+            System.out.println("poinc c: " + pointStr);
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void read(File file) {
@@ -161,6 +237,9 @@ public class ReadData {
         String[] arrayDavlSBar = str2DavlSBar.split(" ");
         ArrayList<String> listDavlSBar = new ArrayList<>(Arrays.asList(arrayDavlSBar));
         if (countPointA != 0) {
+            resPointADavlSBar += listDavlSBar.get(countPointA);
+
+
             resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
                     "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
 
@@ -347,15 +426,18 @@ public class ReadData {
         String[] arrayDavlSBar = str2DavlSBar.split(" ");
         ArrayList<String> listDavlSBar = new ArrayList<>(Arrays.asList(arrayDavlSBar));
         if (countPointA != 0) {
-            resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
-                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
+//            resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
+//                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
+            resPointADavlSBar += listDavlSBar.get(countPointA);
 
             System.out.println("Давление с БРС точка А: " + listDavlSBar.get(countPointA));
         }
         if (countPointB != 0) {
+            resPointBDavlSBar += listDavlSBar.get(countPointB);
             System.out.println("Давление с БРС точка Б: " + listDavlSBar.get(countPointB));
         }
         if (countPointD != 0) {
+            resPointDDavlSBar += listDavlSBar.get(countPointD);
             System.out.println("Давление с БРС точка Д: " + listDavlSBar.get(countPointD));
         }
 
@@ -364,12 +446,15 @@ public class ReadData {
         String[] arrayTVx = str2TVx.split(" ");
         ArrayList<String> listTVx = new ArrayList<>(Arrays.asList(arrayTVx));
         if (countPointA != 0) {
+            resPointATvxB += listTVx.get(countPointA);
             System.out.println("Твх_б точка А: " + listTVx.get(countPointA));
         }
         if (countPointB != 0) {
+            resPointBTvxB += listTVx.get(countPointB);
             System.out.println("Твх_б точка Б: " + listTVx.get(countPointB));
         }
         if (countPointD != 0) {
+            resPointDTvxB += listTVx.get(countPointD);
             System.out.println("Твх_б точка Д: " + listTVx.get(countPointD));
         }
 
@@ -378,14 +463,17 @@ public class ReadData {
         String[] arrayNtk = str2Ntk.split(" ");
         ArrayList<String> listNtk = new ArrayList<>(Arrays.asList(arrayNtk));
         if (countPointA != 0) {
+            resPointANtk += listNtk.get(countPointA);
             System.out.println("nтк точка А: " + listNtk.get(countPointA));
             countPointA = 0;
         }
         if (countPointB != 0) {
+            resPointBNtk += listNtk.get(countPointB);
             System.out.println("nтк точка Б: " + listNtk.get(countPointB));
             countPointB = 0;
         }
         if (countPointD != 0) {
+            resPointDNtk += listNtk.get(countPointD);
             System.out.println("nтк точка Д: " + listNtk.get(countPointD));
             countPointD = 0;
         }

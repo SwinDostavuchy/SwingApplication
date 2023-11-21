@@ -113,9 +113,9 @@ public class Example extends JFrame implements ActionListener {
         container.add(selectFileACT);
 
         selectFileTxt = new JButton("Выбрать файл .тхт");
-        selectFileTxt.setFont(new Font("Arial",Font.PLAIN,15));
-        selectFileTxt.setSize(200,20);
-        selectFileTxt.setLocation(30,470);
+        selectFileTxt.setFont(new Font("Arial", Font.PLAIN, 15));
+        selectFileTxt.setSize(200, 20);
+        selectFileTxt.setLocation(30, 470);
         selectFileTxt.addActionListener(this);
         container.add(selectFileTxt);
 
@@ -132,6 +132,14 @@ public class Example extends JFrame implements ActionListener {
         textArea.setLineWrap(true);
         textArea.setEditable(false);
         container.add(textArea);
+
+//        textArea.setText(ReadData.resultC);
+        textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
+        textArea.setText("Точка A tvx_bж: " + ReadData.resPointATvxB);
+        textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
+                + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
+                + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
+                + " Точка С: " + ReadData.resultC);
 
 
         setVisible(true);
@@ -174,8 +182,12 @@ public class Example extends JFrame implements ActionListener {
                     for (File listFile : listFiles) {
                         ReadData.read(listFile);
                     }
-
-//                    textArea.setText(ReadData.resultA);
+//                    textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
+//                    textArea.setText("Точка A tvx_bж: " + ReadData.resPointATvxB);
+//                    textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
+//                            + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
+//                            + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
+//                    + " Точка С: " + ReadData.resultC);
                 }
             }
         });
@@ -184,11 +196,25 @@ public class Example extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setMultiSelectionEnabled(true);
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 int ret = fileChooser.showOpenDialog(Example.this);
                 if (ret == JFileChooser.APPROVE_OPTION) {
-                    File fileAct = fileChooser.getSelectedFile();
-                    ReadData.readAct(fileAct);
+                    File[] filesAct = fileChooser.getSelectedFiles();
+                    for (File f : filesAct) {
+//                        if (comboBox.getSelectedItem().equals("ВК-2500П")) {
+//                            ReadData.readActVK2500P(f);
+//                            textArea.setText("Точка С: " + ReadData.resultC);
+//
+//                        }
+                        if (comboBox.getSelectedItem().equals("ВК-2500")) {
+                            ReadData.readActVK2500(f);
+                            textArea.setText("Точка С: " + ReadData.resultC);
+                        }
+                        if (comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
+
+                        }
+                    }
                 }
             }
         });
