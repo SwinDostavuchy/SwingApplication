@@ -18,15 +18,17 @@ public class Example extends JFrame implements ActionListener {
     public JLabel labelPointD;
     private JLabel labelOutData;
     public JButton selectFilesButton;
+    public JButton selectFileACT;
+    public JButton selectFileTxt;
     public JTextArea textArea;
-    private JComboBox comboBox;
+    public static JComboBox comboBox;
 
     public static String pointA = "";
     public static String pointB = "";
     public static String pointD = "";
     public static String numberEngine = "";
 
-    private String[] engineList = {"ВК-2500","ТВ3-117ВМ","ВК-2500П"};
+    private String[] engineList = {"ВК-2500", "ТВ3-117ВМ", "ВК-2500П"};
 
 
     public Example() {
@@ -39,7 +41,7 @@ public class Example extends JFrame implements ActionListener {
         container.setLayout(null);
 
         comboBox = new JComboBox<>(engineList);
-        comboBox.setBounds(50,60,100,20);
+        comboBox.setBounds(50, 60, 100, 20);
         container.add(comboBox);
 
         labelTitle = new JLabel("Форма получения данных из PDF");
@@ -99,9 +101,23 @@ public class Example extends JFrame implements ActionListener {
         selectFilesButton = new JButton("Выбрать PDF файлы");
         selectFilesButton.setFont(new Font("Arial", Font.PLAIN, 15));
         selectFilesButton.setSize(200, 20);
-        selectFilesButton.setLocation(150, 450);
+        selectFilesButton.setLocation(30, 400);
         selectFilesButton.addActionListener(this);
         container.add(selectFilesButton);
+
+        selectFileACT = new JButton("Выбрать акт сдачи");
+        selectFileACT.setFont(new Font("Arial", Font.PLAIN, 15));
+        selectFileACT.setSize(200, 20);
+        selectFileACT.setLocation(30, 435);
+        selectFileACT.addActionListener(this);
+        container.add(selectFileACT);
+
+        selectFileTxt = new JButton("Выбрать файл .тхт");
+        selectFileTxt.setFont(new Font("Arial",Font.PLAIN,15));
+        selectFileTxt.setSize(200,20);
+        selectFileTxt.setLocation(30,470);
+        selectFileTxt.addActionListener(this);
+        container.add(selectFileTxt);
 
         labelOutData = new JLabel("Данные для эксплатуационных графиков АБД");
         labelOutData.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -159,20 +175,40 @@ public class Example extends JFrame implements ActionListener {
                         ReadData.read(listFile);
                     }
 
-//                    String selectedBox = (String) comboBox.getSelectedItem();
-//                    assert selectedBox != null;
-//                    if (selectedBox.equals("ВК-2500")) {
-//                        ReadData.extractDataVK2500();
-//                    }
-
-
-//                    ReadData.extractDataVK2500();
-//
 //                    textArea.setText(ReadData.resultA);
                 }
             }
         });
 
+        selectFileACT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                int ret = fileChooser.showOpenDialog(Example.this);
+                if (ret == JFileChooser.APPROVE_OPTION) {
+                    File fileAct = fileChooser.getSelectedFile();
+                    ReadData.readAct(fileAct);
+                }
+            }
+        });
+
+        selectFileTxt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                int ret = fileChooser.showOpenDialog(Example.this);
+                if (ret == JFileChooser.APPROVE_OPTION) {
+                    File fileTxt = fileChooser.getSelectedFile();
+                    try {
+                        ReadData.readTxt(fileTxt);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        });
 
     }
 
