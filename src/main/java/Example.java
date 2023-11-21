@@ -159,11 +159,11 @@ public class Example extends JFrame implements ActionListener {
                         ReadData.read(listFile);
                     }
 
-                    String selectedBox = (String) comboBox.getSelectedItem();
-                    assert selectedBox != null;
-                    if (selectedBox.equals("ВК-2500")) {
-                        ReadData.extractDataVK2500();
-                    }
+//                    String selectedBox = (String) comboBox.getSelectedItem();
+//                    assert selectedBox != null;
+//                    if (selectedBox.equals("ВК-2500")) {
+//                        ReadData.extractDataVK2500();
+//                    }
 
 
 //                    ReadData.extractDataVK2500();

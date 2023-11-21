@@ -40,6 +40,7 @@ public class ReadData {
             PDFTextStripper stripper = new PDFTextStripper();
             allDataText = stripper.getText(document);
 //            System.out.println(allDataText);
+            extractDataVK2500();
         } catch (IOException e) {
             throw new RuntimeException(e);
 
@@ -56,19 +57,19 @@ public class ReadData {
 
         if (Arrays.toString(dataTextAll).contains(Example.numberEngine) && Arrays.toString(dataTextAll).contains("Энергетические параметры")) {
             for (int i = 0; i < dataTextAll.length; i++) {
-                String[] strArr = dataTextAll[i].split("\n");
-                for (int j = 0; j < strArr.length; j++) {
-                    if (strArr[j].startsWith("№ замера")) {
-                        dataNumZam.add(strArr[j].substring(9));
+                String[] strArrAll = dataTextAll[i].split("\n");
+                for (int j = 0; j < strArrAll.length; j++) {
+                    if (strArrAll[j].startsWith("№ замера")) {
+                        dataNumZam.add(strArrAll[j].substring(9));
                     }
-                    if (strArr[j].startsWith("Давл. с БРС")) {
-                        dataDavlSBar.add(strArr[j].substring(12));
+                    if (strArrAll[j].startsWith("Давл. с БРС")) {
+                        dataDavlSBar.add(strArrAll[j].substring(12));
                     }
-                    if (strArr[j].startsWith("t*вх")) {
-                        dataTvx.add(strArr[j].substring(5));
+                    if (strArrAll[j].startsWith("t*вх")) {
+                        dataTvx.add(strArrAll[j].substring(5));
                     }
-                    if (strArr[j].startsWith("nтк") && !strArr[j].startsWith("nтк пр")) {
-                        dataNtk.add(strArr[j].substring(4));
+                    if (strArrAll[j].startsWith("nтк") && !strArrAll[j].startsWith("nтк пр")) {
+                        dataNtk.add(strArrAll[j].substring(4));
                     }
                 }
             }
@@ -83,65 +84,69 @@ public class ReadData {
         for (int i = 0; i < listNumZ.size(); i++) {
             if (listNumZ.get(i).equals(Example.pointA)) {
                 countPointA = i;
+            } if (listNumZ.get(i).equals(Example.pointB)) {
+                countPointB = i;
+            } if (listNumZ.get(i).equals(Example.pointD)) {
+                countPointD = i;
             }
         }
 
-        for (int j = 0; j < listNumZ.size(); j++) {
-            if (listNumZ.get(j).equals(Example.pointB)) {
-                countPointB = j;
-            }
-        }
-
-        for (int k = 0; k < listNumZ.size(); k++) {
-            if (listNumZ.get(k).equals(Example.pointD)) {
-                countPointD = k;
-            }
-        }
-
-        String strADavlSBar = Arrays.toString(dataDavlSBar.toArray()).replaceAll("[\\[\\]\\s]", " ");
-        String str2DavlSBar = strADavlSBar.replaceAll(" , ", " ");
-        String[] arrayDavlSBar = str2DavlSBar.split(" ");
-        ArrayList<String> listDavlSBar = new ArrayList<>(Arrays.asList(arrayDavlSBar));
-        if (countPointA != 0) {
-            resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
-                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
-
-            System.out.println("Давление с БРС точка А: " + listDavlSBar.get(countPointA));
-        }
-        if (countPointB != 0) {
-            System.out.println("Давление с БРС точка Б: " + listDavlSBar.get(countPointB));
-        }
-        if (countPointD != 0) {
-            System.out.println("Давление с БРС точка Д: " + listDavlSBar.get(countPointD));
-        }
-
-        String strTVx = Arrays.toString(dataTvx.toArray()).replaceAll("[\\[\\]\\s]", " ");
-        String str2TVx = strTVx.replaceAll(" , ", " ");
-        String[] arrayTVx = str2TVx.split(" ");
-        ArrayList<String> listTVx = new ArrayList<>(Arrays.asList(arrayTVx));
-        if (countPointA != 0) {
-            System.out.println("t*вх точка А: " + listTVx.get(countPointA));
-        }
-        if (countPointB != 0) {
-            System.out.println("t*вх точка Б: " + listTVx.get(countPointB));
-        }
-        if (countPointD != 0) {
-            System.out.println("t*вх точка Д: " + listTVx.get(countPointD));
-        }
-
-        String strNtk = Arrays.toString(dataNtk.toArray()).replaceAll("[\\[\\]\\s]", " ");
-        String str2Ntk = strNtk.replaceAll(" , ", " ");
-        String[] arrayNtk = str2Ntk.split(" ");
-        ArrayList<String> listNtk = new ArrayList<>(Arrays.asList(arrayNtk));
-        if (countPointA != 0) {
-            System.out.println("nтк точка А: " + listNtk.get(countPointA));
-        }
-        if (countPointB != 0) {
-            System.out.println("nтк точка Б: " + listNtk.get(countPointB));
-        }
-        if (countPointD != 0) {
-            System.out.println("nтк точка Д: " + listNtk.get(countPointD));
-        }
+//        for (int j = 0; j < listNumZ.size(); j++) {
+//            if (listNumZ.get(j).equals(Example.pointB)) {
+//                countPointB = j;
+//            }
+//        }
+//
+//        for (int k = 0; k < listNumZ.size(); k++) {
+//            if (listNumZ.get(k).equals(Example.pointD)) {
+//                countPointD = k;
+//            }
+//        }
+//
+//        String strADavlSBar = Arrays.toString(dataDavlSBar.toArray()).replaceAll("[\\[\\]\\s]", " ");
+//        String str2DavlSBar = strADavlSBar.replaceAll(" , ", " ");
+//        String[] arrayDavlSBar = str2DavlSBar.split(" ");
+//        ArrayList<String> listDavlSBar = new ArrayList<>(Arrays.asList(arrayDavlSBar));
+//        if (countPointA != 0) {
+//            resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
+//                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
+//
+//            System.out.println("Давление с БРС точка А: " + listDavlSBar.get(countPointA));
+//        }
+//        if (countPointB != 0) {
+//            System.out.println("Давление с БРС точка Б: " + listDavlSBar.get(countPointB));
+//        }
+//        if (countPointD != 0) {
+//            System.out.println("Давление с БРС точка Д: " + listDavlSBar.get(countPointD));
+//        }
+//
+//        String strTVx = Arrays.toString(dataTvx.toArray()).replaceAll("[\\[\\]\\s]", " ");
+//        String str2TVx = strTVx.replaceAll(" , ", " ");
+//        String[] arrayTVx = str2TVx.split(" ");
+//        ArrayList<String> listTVx = new ArrayList<>(Arrays.asList(arrayTVx));
+//        if (countPointA != 0) {
+//            System.out.println("t*вх точка А: " + listTVx.get(countPointA));
+//        }
+//        if (countPointB != 0) {
+//            System.out.println("t*вх точка Б: " + listTVx.get(countPointB));
+//        }
+//        if (countPointD != 0) {
+//            System.out.println("t*вх точка Д: " + listTVx.get(countPointD));
+//        }
+//
+//        String strNtk = Arrays.toString(dataNtk.toArray()).replaceAll("[\\[\\]\\s]", " ");
+//        String str2Ntk = strNtk.replaceAll(" , ", " ");
+//        String[] arrayNtk = str2Ntk.split(" ");
+//        ArrayList<String> listNtk = new ArrayList<>(Arrays.asList(arrayNtk));
+//        if (countPointA != 0) {
+//            System.out.println("nтк точка А: " + listNtk.get(countPointA));
+//        }
+//        if (countPointB != 0) {
+//            System.out.println("nтк точка Б: " + listNtk.get(countPointB));
+//        }
+//        if (countPointD != 0) {
+//            System.out.println("nтк точка Д: " + listNtk.get(countPointD));
+//        }
 
     }
 
