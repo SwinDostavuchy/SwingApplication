@@ -127,11 +127,12 @@ public class Example extends JFrame implements ActionListener {
 
         textArea = new JTextArea();
         textArea.setFont(new Font("Arial", Font.PLAIN, 15));
-        textArea.setSize(300, 400);
-        textArea.setLocation(500, 100);
+        textArea.setSize(400, 400);
+        textArea.setLocation(450, 100);
         textArea.setLineWrap(true);
         textArea.setEditable(false);
         container.add(textArea);
+
 
 //        textArea.setText(ReadData.resultC);
         textArea.setText("Точка A ntk: " + ReadData.resPointANtk);

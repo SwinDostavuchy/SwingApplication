@@ -45,6 +45,20 @@ public class ReadData {
         this.ntk = ntk;
     }
 
+    public static void writeTxtDataFromExplG() {
+        File theDir = new File("C:\\Users\\User\\Desktop\\txt_files");
+        if (!theDir.exists()) {
+            theDir.mkdirs();
+        }
+
+        try (FileWriter writer = new FileWriter(theDir.getAbsolutePath() + "\\" + Example.numberEngine)) {
+            writer.write(resPointADavlSBar + "\n");
+            writer.write(resPointANtk + "\n");
+        } catch (IOException e) {
+            // Handle the exception
+        }
+    }
+
     public static void readActVK2500(File file) {
         try (PDDocument document = PDDocument.load(file)) {
             PDFTextStripper stripper = new PDFTextStripper();
@@ -79,7 +93,7 @@ public class ReadData {
 //                System.out.print(t);
 //            }
             ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(arr));
-            String pointStr = arrayList.get(3).substring(6,10);
+            String pointStr = arrayList.get(3).substring(6, 10);
 
             resultC += pointStr;
 
@@ -141,7 +155,7 @@ public class ReadData {
 //                System.out.print(t);
 //            }
             ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(arr));
-            String pointStr = arrayList.get(4).substring(6,10);
+            String pointStr = arrayList.get(4).substring(6, 10);
 
             resultC += pointStr;
 
@@ -163,6 +177,7 @@ public class ReadData {
             switch (selectedBox) {
                 case "ВК-2500":
                     extractDataVK2500();
+                    writeTxtDataFromExplG();
                     break;
                 case "ТВ3-117ВМ":
                     extractDataTV3117Vm();
