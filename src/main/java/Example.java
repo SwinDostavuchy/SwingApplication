@@ -135,12 +135,12 @@ public class Example extends JFrame implements ActionListener {
 
 
 //        textArea.setText(ReadData.resultC);
-        textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
-        textArea.setText("Точка A tvx_bж: " + ReadData.resPointATvxB);
-        textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
-                + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
-                + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
-                + " Точка С: " + ReadData.resultC);
+//        textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
+//        textArea.setText("Точка A tvx_bж: " + ReadData.resPointATvxB);
+//        textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
+//                + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
+//                + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
+//                + " Точка С: " + ReadData.resultC);
 
 
         setVisible(true);
@@ -183,12 +183,6 @@ public class Example extends JFrame implements ActionListener {
                     for (File listFile : listFiles) {
                         ReadData.read(listFile);
                     }
-//                    textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
-//                    textArea.setText("Точка A tvx_bж: " + ReadData.resPointATvxB);
-//                    textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
-//                            + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
-//                            + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
-//                    + " Точка С: " + ReadData.resultC);
                 }
             }
         });
@@ -210,7 +204,8 @@ public class Example extends JFrame implements ActionListener {
 //                        }
                         if (comboBox.getSelectedItem().equals("ВК-2500")) {
                             ReadData.readActVK2500(f);
-                            textArea.setText("Точка С: " + ReadData.resultC);
+                            PrintData.createGUITable();
+//                            textArea.setText("Точка С: " + ReadData.resultC);
                         }
                         if (comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
 

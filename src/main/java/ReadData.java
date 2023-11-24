@@ -33,10 +33,10 @@ public class ReadData {
 
     public static String allDataText = "";
     public static String allDataACT = "";
-//    public static Set<String> dataNumZam = new LinkedHashSet<>();
-//    public static Set<String> dataDavlSBar = new LinkedHashSet<>();
-//    public static Set<String> dataTvx = new LinkedHashSet<>();
-//    public static Set<String> dataNtk = new LinkedHashSet<>();
+    public static Set<String> dataNumZam = new LinkedHashSet<>();
+    public static Set<String> dataDavlSBar = new LinkedHashSet<>();
+    public static Set<String> dataTvx = new LinkedHashSet<>();
+    public static Set<String> dataNtk = new LinkedHashSet<>();
 
 
     public ReadData(String davlSBar, String tVx, String ntk) {
@@ -52,8 +52,7 @@ public class ReadData {
         }
 
         try (FileWriter writer = new FileWriter(theDir.getAbsolutePath() + "\\" + Example.numberEngine)) {
-            writer.write(resPointADavlSBar + "\n");
-            writer.write(resPointANtk + "\n");
+//            writer.write(PrintData.createGUITable());
         } catch (IOException e) {
             // Handle the exception
         }
@@ -97,7 +96,7 @@ public class ReadData {
 
             resultC += pointStr;
 
-            System.out.println("poinc c: " + pointStr);
+            System.out.println("poinc c: " + resultC);
 
 
         } catch (IOException e) {
@@ -177,7 +176,9 @@ public class ReadData {
             switch (selectedBox) {
                 case "ВК-2500":
                     extractDataVK2500();
-                    writeTxtDataFromExplG();
+                    PrintData.createGUITable();
+
+//                    writeTxtDataFromExplG();
                     break;
                 case "ТВ3-117ВМ":
                     extractDataTV3117Vm();
