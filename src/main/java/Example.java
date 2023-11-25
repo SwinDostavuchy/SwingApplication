@@ -33,7 +33,7 @@ public class Example extends JFrame implements ActionListener {
 
     public Example() {
         setTitle("Считывание данных из PDF");
-        setBounds(300, 90, 900, 600);
+        setBounds(300, 90, 600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -119,19 +119,19 @@ public class Example extends JFrame implements ActionListener {
         selectFileTxt.addActionListener(this);
         container.add(selectFileTxt);
 
-        labelOutData = new JLabel("Данные для эксплатуационных графиков АБД");
-        labelOutData.setFont(new Font("Arial", Font.PLAIN, 20));
-        labelOutData.setSize(300, 20);
-        labelOutData.setLocation(500, 70);
-        container.add(labelOutData);
+//        labelOutData = new JLabel("Данные для эксплатуационных графиков АБД");
+//        labelOutData.setFont(new Font("Arial", Font.PLAIN, 20));
+//        labelOutData.setSize(300, 20);
+//        labelOutData.setLocation(500, 70);
+//        container.add(labelOutData);
 
-        textArea = new JTextArea();
-        textArea.setFont(new Font("Arial", Font.PLAIN, 15));
-        textArea.setSize(400, 400);
-        textArea.setLocation(450, 100);
-        textArea.setLineWrap(true);
-        textArea.setEditable(false);
-        container.add(textArea);
+//        textArea = new JTextArea();
+//        textArea.setFont(new Font("Arial", Font.PLAIN, 15));
+//        textArea.setSize(400, 400);
+//        textArea.setLocation(450, 100);
+//        textArea.setLineWrap(true);
+//        textArea.setEditable(false);
+//        container.add(textArea);
 
 
 //        textArea.setText(ReadData.resultC);
@@ -198,17 +198,17 @@ public class Example extends JFrame implements ActionListener {
                     File[] filesAct = fileChooser.getSelectedFiles();
                     for (File f : filesAct) {
 //                        if (comboBox.getSelectedItem().equals("ВК-2500П")) {
-//                            ReadData.readActVK2500P(f);
-//                            textArea.setText("Точка С: " + ReadData.resultC);
+////                            VK2500P.readActVK2500P(f);
 //
 //                        }
                         if (comboBox.getSelectedItem().equals("ВК-2500")) {
-                            ReadData.readActVK2500(f);
-                            PrintData.createGUITable();
+                            VK2500.readActVK2500(f);
+                            PrintData.createTableVK2500();
 //                            textArea.setText("Точка С: " + ReadData.resultC);
                         }
                         if (comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
-
+                            TV3117VM.readActTV3(f);
+                            PrintData.createTableTV3VM();
                         }
                     }
                 }
