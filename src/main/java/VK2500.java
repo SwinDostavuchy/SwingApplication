@@ -140,15 +140,16 @@ public class VK2500 {
 //                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
             resPointADavlSBarVK2500 += listDavlSBar.get(countPointAVK2500);
 
-            System.out.println("Давление с БРС точка А: " + listDavlSBar.get(countPointAVK2500));
+            System.out.println("Давление с БРС точка А: " + resPointADavlSBarVK2500);
         }
         if (countPointBVK2500 != 0) {
             resPointBDavlSBarVK2500 += listDavlSBar.get(countPointBVK2500);
-            System.out.println("Давление с БРС точка Б: " + listDavlSBar.get(countPointBVK2500));
+            System.out.println("length: " + resPointBDavlSBarVK2500.length());
+            System.out.println("Давление с БРС точка Б: " + resPointBDavlSBarVK2500);
         }
         if (countPointDVK2500 != 0) {
             resPointDDavlSBarVK2500 += listDavlSBar.get(countPointDVK2500);
-            System.out.println("Давление с БРС точка Д: " + listDavlSBar.get(countPointDVK2500));
+            System.out.println("Давление с БРС точка Д: " + resPointDDavlSBarVK2500);
         }
 
         String strTVx = Arrays.toString(dataTvxVK2500.toArray()).replaceAll("[\\[\\]\\s]", " ");
@@ -157,15 +158,16 @@ public class VK2500 {
         ArrayList<String> listTVx = new ArrayList<>(Arrays.asList(arrayTVx));
         if (countPointAVK2500 != 0) {
             resPointATvxBVK2500 += listTVx.get(countPointAVK2500);
-            System.out.println("Твх_б точка А: " + listTVx.get(countPointAVK2500));
+            System.out.println("Твх_б точка А: " + resPointATvxBVK2500);
         }
         if (countPointBVK2500 != 0) {
             resPointBTvxBVK2500 += listTVx.get(countPointBVK2500);
-            System.out.println("Твх_б точка Б: " + listTVx.get(countPointBVK2500));
+            System.out.println("length: " + resPointBTvxBVK2500.length());
+            System.out.println("Твх_б точка Б: " + resPointBTvxBVK2500);
         }
         if (countPointDVK2500 != 0) {
             resPointDTvxBVK2500 += listTVx.get(countPointDVK2500);
-            System.out.println("Твх_б точка Д: " + listTVx.get(countPointDVK2500));
+            System.out.println("Твх_б точка Д: " + resPointDTvxBVK2500);
         }
 
         String strNtk = Arrays.toString(dataNtkVK2500.toArray()).replaceAll("[\\[\\]\\s]", " ");
@@ -174,17 +176,18 @@ public class VK2500 {
         ArrayList<String> listNtk = new ArrayList<>(Arrays.asList(arrayNtk));
         if (countPointAVK2500 != 0) {
             resPointANtkVK2500 += listNtk.get(countPointAVK2500);
-            System.out.println("nтк точка А: " + listNtk.get(countPointAVK2500));
+            System.out.println("nтк точка А: " + resPointANtkVK2500);
             countPointAVK2500 = 0;
         }
         if (countPointBVK2500 != 0) {
             resPointBNtkVK2500 += listNtk.get(countPointBVK2500);
-            System.out.println("nтк точка Б: " + listNtk.get(countPointBVK2500));
+            System.out.println("length: " + resPointBNtkVK2500.length());
+            System.out.println("nтк точка Б: " + resPointBNtkVK2500);
             countPointBVK2500 = 0;
         }
         if (countPointDVK2500 != 0) {
             resPointDNtkVK2500 += listNtk.get(countPointDVK2500);
-            System.out.println("nтк точка Д: " + listNtk.get(countPointDVK2500));
+            System.out.println("nтк точка Д: " + resPointDNtkVK2500);
             countPointDVK2500 = 0;
         }
     }
