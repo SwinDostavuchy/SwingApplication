@@ -3,8 +3,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -175,7 +173,7 @@ public class ReadData {
             assert selectedBox != null;
             switch (selectedBox) {
                 case "ВК-2500":
-                    VK2500.extractDataVK2500();
+                    VK2500NEW.extractDataVK2500();
                     PrintData.createTableVK2500();
 
 //                    writeTxtDataFromExplG();

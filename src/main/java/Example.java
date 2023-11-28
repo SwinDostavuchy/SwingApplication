@@ -8,14 +8,14 @@ import java.io.IOException;
 public class Example extends JFrame implements ActionListener {
     private Container container;
     public JTextField inputNumberEngine;
-    private JTextField inputPointA;
-    private JTextField inputPointB;
     private JTextField inputPointD;
+    private JTextField inputPointB;
+    private JTextField inputPointA;
     private JLabel labelTitle;
     private JLabel labelNumberEngine;
-    public JLabel labelPointA;
-    public JLabel labelPointB;
     public JLabel labelPointD;
+    public JLabel labelPointB;
+    public JLabel labelPointA;
     private JLabel labelOutData;
     public JButton selectFilesButton;
     public JButton selectFileACT;
@@ -62,41 +62,41 @@ public class Example extends JFrame implements ActionListener {
         inputNumberEngine.setLocation(210, 200);
         container.add(inputNumberEngine);
 
-        labelPointA = new JLabel("№ замера точка А");
-        labelPointA.setFont(new Font("Arial", Font.PLAIN, 20));
-        labelPointA.setSize(200, 20);
-        labelPointA.setLocation(30, 250);
-        container.add(labelPointA);
-
-        inputPointA = new JTextField();
-        inputPointA.setFont(new Font("Arial", Font.PLAIN, 15));
-        inputPointA.setSize(200, 20);
-        inputPointA.setLocation(210, 250);
-        container.add(inputPointA);
-
         labelPointB = new JLabel("№ замера точка Б");
         labelPointB.setFont(new Font("Arial", Font.PLAIN, 20));
         labelPointB.setSize(200, 20);
-        labelPointB.setLocation(30, 300);
+        labelPointB.setLocation(30, 250);
         container.add(labelPointB);
 
         inputPointB = new JTextField();
         inputPointB.setFont(new Font("Arial", Font.PLAIN, 15));
         inputPointB.setSize(200, 20);
-        inputPointB.setLocation(210, 300);
+        inputPointB.setLocation(210, 250);
         container.add(inputPointB);
 
         labelPointD = new JLabel("№ замера точка Д");
         labelPointD.setFont(new Font("Arial", Font.PLAIN, 20));
         labelPointD.setSize(200, 20);
-        labelPointD.setLocation(30, 350);
+        labelPointD.setLocation(30, 300);
         container.add(labelPointD);
 
         inputPointD = new JTextField();
         inputPointD.setFont(new Font("Arial", Font.PLAIN, 15));
         inputPointD.setSize(200, 20);
-        inputPointD.setLocation(210, 350);
+        inputPointD.setLocation(210, 300);
         container.add(inputPointD);
+
+        labelPointA = new JLabel("№ замера точка А");
+        labelPointA.setFont(new Font("Arial", Font.PLAIN, 20));
+        labelPointA.setSize(200, 20);
+        labelPointA.setLocation(30, 350);
+        container.add(labelPointA);
+
+        inputPointA = new JTextField();
+        inputPointA.setFont(new Font("Arial", Font.PLAIN, 15));
+        inputPointA.setSize(200, 20);
+        inputPointA.setLocation(210, 350);
+        container.add(inputPointA);
 
         selectFilesButton = new JButton("Выбрать PDF файлы");
         selectFilesButton.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -169,9 +169,10 @@ public class Example extends JFrame implements ActionListener {
 //                        JOptionPane.showMessageDialog(Example.this, "Error reading PDF file");
 //                    }
 //                }
-                pointA = inputPointA.getText();
                 pointB = inputPointB.getText();
                 pointD = inputPointD.getText();
+                pointA = inputPointA.getText();
+
                 numberEngine = inputNumberEngine.getText();
 
                 JFileChooser fileChooser = new JFileChooser();
@@ -202,7 +203,8 @@ public class Example extends JFrame implements ActionListener {
 //
 //                        }
                         if (comboBox.getSelectedItem().equals("ВК-2500")) {
-                            VK2500.readActVK2500(f);
+                            VK2500NEW.readActVK2500(f);
+                            VK2500NEW.setValueData();
                             PrintData.createTableVK2500();
 //                            textArea.setText("Точка С: " + ReadData.resultC);
                         }

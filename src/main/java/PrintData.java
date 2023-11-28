@@ -4,35 +4,6 @@ import java.awt.*;
 public class PrintData extends JFrame {
 
     public static void createTableTV3VM() {
-        if (TV3117VM.resPointBNtkVM.length() > 6) {
-            TV3117VM.resPointBNtkVM = TV3117VM.resPointBNtkVM.substring(0, TV3117VM.resPointBNtkVM.length() / 2);
-        }
-        if (TV3117VM.resPointBTvxBVM.length() > 5) {
-            TV3117VM.resPointBTvxBVM = TV3117VM.resPointBTvxBVM.substring(0, TV3117VM.resPointBTvxBVM.length() / 2);
-        }
-        if (TV3117VM.resPointBDavlSBarVM.length() > 6) {
-            TV3117VM.resPointBDavlSBarVM = TV3117VM.resPointBDavlSBarVM.substring(0, TV3117VM.resPointBDavlSBarVM.length() / 2);
-        }
-
-        if (TV3117VM.resPointDNtkVM.length() > 6) {
-            TV3117VM.resPointDNtkVM = TV3117VM.resPointDNtkVM.substring(0, TV3117VM.resPointDNtkVM.length() / 2);
-        }
-        if (TV3117VM.resPointDTvxBVM.length() > 5) {
-            TV3117VM.resPointDTvxBVM = TV3117VM.resPointDTvxBVM.substring(0, TV3117VM.resPointDTvxBVM.length() / 2);
-        }
-        if (TV3117VM.resPointDDavlSBarVM.length() > 6) {
-            TV3117VM.resPointDDavlSBarVM = TV3117VM.resPointDDavlSBarVM.substring(0, TV3117VM.resPointDDavlSBarVM.length() / 2);
-        }
-
-        if (TV3117VM.resPointANtkVM.length() > 5) {
-            TV3117VM.resPointANtkVM = TV3117VM.resPointANtkVM.substring(0, TV3117VM.resPointANtkVM.length() / 2);
-        }
-        if (TV3117VM.resPointATvxBVM.length() > 5) {
-            TV3117VM.resPointATvxBVM = TV3117VM.resPointATvxBVM.substring(0, TV3117VM.resPointATvxBVM.length() / 2);
-        }
-        if (TV3117VM.resPointADavlSBarVM.length() > 6) {
-            TV3117VM.resPointADavlSBarVM = TV3117VM.resPointADavlSBarVM.substring(0, TV3117VM.resPointADavlSBarVM.length() / 2);
-        }
 
             JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,35 +39,9 @@ public class PrintData extends JFrame {
         }
 
         public static void createTableVK2500 () {
-            if (VK2500.resPointBNtkVK2500.length() > 6) {
-                VK2500.resPointBNtkVK2500 = VK2500.resPointBNtkVK2500.substring(0, VK2500.resPointBNtkVK2500.length() / 2);
-            }
-            if (VK2500.resPointBDavlSBarVK2500.length() > 6) {
-                VK2500.resPointBDavlSBarVK2500 = VK2500.resPointBDavlSBarVK2500.substring(0, VK2500.resPointBDavlSBarVK2500.length() / 2);
-            }
-            if (VK2500.resPointBTvxBVK2500.length() > 5) {
-                VK2500.resPointBTvxBVK2500 = VK2500.resPointBTvxBVK2500.substring(0, VK2500.resPointBTvxBVK2500.length() / 2);
-            }
 
-            if (VK2500.resPointANtkVK2500.length() > 6) {
-                VK2500.resPointANtkVK2500 = VK2500.resPointANtkVK2500.substring(0, VK2500.resPointANtkVK2500.length() / 2);
-            }
-            if (VK2500.resPointADavlSBarVK2500.length() > 6) {
-                VK2500.resPointADavlSBarVK2500 = VK2500.resPointADavlSBarVK2500.substring(0, VK2500.resPointADavlSBarVK2500.length() / 2);
-            }
-            if (VK2500.resPointATvxBVK2500.length() > 5) {
-                VK2500.resPointATvxBVK2500 = VK2500.resPointATvxBVK2500.substring(0, VK2500.resPointATvxBVK2500.length() / 2);
-            }
+//        VK2500NEW.setValueData();
 
-            if (VK2500.resPointDNtkVK2500.length() > 6) {
-                VK2500.resPointDNtkVK2500 = VK2500.resPointDNtkVK2500.substring(0, VK2500.resPointDNtkVK2500.length() / 2);
-            }
-            if (VK2500.resPointDDavlSBarVK2500.length() > 6) {
-                VK2500.resPointDDavlSBarVK2500 = VK2500.resPointDDavlSBarVK2500.substring(0, VK2500.resPointDDavlSBarVK2500.length() / 2);
-            }
-            if (VK2500.resPointDTvxBVK2500.length() > 5) {
-                VK2500.resPointDTvxBVK2500 = VK2500.resPointDTvxBVK2500.substring(0, VK2500.resPointDTvxBVK2500.length() / 2);
-            }
             JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -109,12 +54,12 @@ public class PrintData extends JFrame {
             };
 
             String[][] data = {
-                    {"График Д", VK2500.resPointDNtkVK2500, VK2500.resPointDTvxBVK2500, VK2500.resPointDDavlSBarVK2500, Example.pointD},
-                    {"График А", VK2500.resPointANtkVK2500, VK2500.resPointATvxBVK2500, VK2500.resPointADavlSBarVK2500, Example.pointA},
-                    {"График Б", VK2500.resPointBNtkVK2500, VK2500.resPointBTvxBVK2500, VK2500.resPointBDavlSBarVK2500, Example.pointB},
-                    {"График С", VK2500.resultCVK2500Ntk, "15", "760", ""},
+                    {"График Д", VK2500NEW.resPointDNtkVK2500, VK2500NEW.resPointDTvxBVK2500, VK2500NEW.resPointDDavlSBarVK2500, Example.pointD},
+                    {"График А", VK2500NEW.resPointANtkVK2500, VK2500NEW.resPointATvxBVK2500, VK2500NEW.resPointADavlSBarVK2500, Example.pointA},
+                    {"График Б", VK2500NEW.resPointBNtkVK2500, VK2500NEW.resPointBTvxBVK2500, VK2500NEW.resPointBDavlSBarVK2500, Example.pointB},
+                    {"График С", VK2500NEW.resultCVK2500Ntk, "15", "760", ""},
             };
-            if (!VK2500.resPointANtkVK2500.isEmpty() && !VK2500.resPointDNtkVK2500.isEmpty() && !VK2500.resPointBNtkVK2500.isEmpty() && !VK2500.resultCVK2500Ntk.isEmpty()) {
+            if (!VK2500NEW.resPointDNtkVK2500.isEmpty() && !VK2500NEW.resPointANtkVK2500.isEmpty() && !VK2500NEW.resPointBNtkVK2500.isEmpty() && !VK2500NEW.resultCVK2500Ntk.isEmpty()) {
                 JTable table = new JTable(data, columnNames);
 
                 JScrollPane scrollPane = new JScrollPane(table);
