@@ -179,7 +179,9 @@ public class ReadData {
 //                    writeTxtDataFromExplG();
                     break;
                 case "ТВ3-117ВМ":
-                    TV3117VM.extractDataTV3117Vm();
+//                    TV3117VM.extractDataTV3117Vm();
+                    TV3117NEW.extractDataTV3117Vm();
+                    PrintData.createTableTV3VM();
                     break;
                 case "ВК-2500П":
                     VK2500P.extractDataVK2500P();

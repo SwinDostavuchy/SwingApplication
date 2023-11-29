@@ -198,10 +198,6 @@ public class Example extends JFrame implements ActionListener {
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     File[] filesAct = fileChooser.getSelectedFiles();
                     for (File f : filesAct) {
-//                        if (comboBox.getSelectedItem().equals("ВК-2500П")) {
-////                            VK2500P.readActVK2500P(f);
-//
-//                        }
                         if (comboBox.getSelectedItem().equals("ВК-2500")) {
                             VK2500NEW.readActVK2500(f);
                             VK2500NEW.setValueData();
@@ -209,8 +205,11 @@ public class Example extends JFrame implements ActionListener {
 //                            textArea.setText("Точка С: " + ReadData.resultC);
                         }
                         if (comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
-                            TV3117VM.readActTV3(f);
+                            TV3117NEW.readActTV3New(f);
+                            TV3117NEW.setValueData();
                             PrintData.createTableTV3VM();
+//                            TV3117VM.readActTV3(f);
+//                            PrintData.createTableTV3VM();
                         }
                     }
                 }

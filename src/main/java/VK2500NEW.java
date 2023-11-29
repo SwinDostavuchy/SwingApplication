@@ -28,9 +28,9 @@ public class VK2500NEW {
     public static String resultD = "";
     public static String resultCVK2500Ntk = "";
 
-    public static Set<String> resSetPointA = new LinkedHashSet<>();
-    public static Set<String> resSetPointB = new LinkedHashSet<>();
-    public static Set<String> resSetPointD = new LinkedHashSet<>();
+    public static Set<String> resSetPointAVK2500 = new LinkedHashSet<>();
+    public static Set<String> resSetPointBVK2500 = new LinkedHashSet<>();
+    public static Set<String> resSetPointDVK2500 = new LinkedHashSet<>();
 
     public static void readActVK2500(File file) {
         try (PDDocument document = PDDocument.load(file)) {
@@ -139,63 +139,59 @@ public class VK2500NEW {
         String str2DavlSBar = strADavlSBar.replaceAll(" , ", " ");
         String[] arrayDavlSBar = str2DavlSBar.split(" ");
         ArrayList<String> listDavlSBar = new ArrayList<>(Arrays.asList(arrayDavlSBar));
-        if (countPointBVK2500 != 0) {
-//            resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
-//                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
-//            resPointADavlSBarVK2500 += listDavlSBar.get(countPointAVK2500);
-            System.out.println(countPointBVK2500 + " - countB");
-            System.out.println("Davl s bar point B: " + resSetPointB.add(listDavlSBar.get(countPointBVK2500)));
 
-//            System.out.println("Давление с БРС точка А: " + resPointADavlSBarVK2500);
-        }
         if (countPointDVK2500 != 0) {
 //            resPointBDavlSBarVK2500 += listDavlSBar.get(countPointBVK2500);
             System.out.println(countPointDVK2500 + " - countD");
-            System.out.println("Davl s bar point D: " + resSetPointD.add(listDavlSBar.get(countPointDVK2500)));
+            System.out.println("Davl s bar point D: " + resSetPointDVK2500.add(listDavlSBar.get(countPointDVK2500)));
 //            System.out.println("length: " + resPointBDavlSBarVK2500.length());
 //            System.out.println("Давление с БРС точка Б: " + resPointBDavlSBarVK2500);
         }
         if (countPointAVK2500 != 0) {
             System.out.println(countPointAVK2500 + " - countA");
-            System.out.println("Davl s bar point A: " + resSetPointA.add(listDavlSBar.get(countPointAVK2500)));
+            System.out.println("Davl s bar point A: " + resSetPointAVK2500.add(listDavlSBar.get(countPointAVK2500)));
 //            resPointDDavlSBarVK2500 += listDavlSBar.get(countPointDVK2500);
 //            System.out.println("Давление с БРС точка Д: " + resPointDDavlSBarVK2500);
+        }
+        if (countPointBVK2500 != 0) {
+//            resultA += "Давление с БРС точка А: " + listDavlSBar.get(countPointA) + " , " + ("Давление с БРС точка Б: " + listDavlSBar.get(countPointB) + " ,") +
+//                    "Давление с БРС точка Д: " + listDavlSBar.get(countPointD) + " . ";
+//            resPointADavlSBarVK2500 += listDavlSBar.get(countPointAVK2500);
+            System.out.println(countPointBVK2500 + " - countB");
+            System.out.println("Davl s bar point B: " + resSetPointBVK2500.add(listDavlSBar.get(countPointBVK2500)));
+
+//            System.out.println("Давление с БРС точка А: " + resPointADavlSBarVK2500);
         }
 
         String strNtk = Arrays.toString(dataNtkVK2500.toArray()).replaceAll("[\\[\\]\\s]", " ");
         String str2Ntk = strNtk.replaceAll(" , ", " ");
         String[] arrayNtk = str2Ntk.split(" ");
         ArrayList<String> listNtk = new ArrayList<>(Arrays.asList(arrayNtk));
-        if (countPointBVK2500 != 0) {
-            System.out.println("Ntk point B: " + resSetPointB.add(listNtk.get(countPointBVK2500)));
-//            resPointANtkVK2500 += listNtk.get(countPointAVK2500);
-//            System.out.println("nтк точка А: " + resPointANtkVK2500);
-        }
+
         if (countPointDVK2500 != 0) {
-            System.out.println("Ntk point D: " + resSetPointD.add(listNtk.get(countPointDVK2500)));
+            System.out.println("Ntk point D: " + resSetPointDVK2500.add(listNtk.get(countPointDVK2500)));
 //            resPointBNtkVK2500 += listNtk.get(countPointBVK2500);
 //            System.out.println("length: " + resPointBNtkVK2500.length());
 //            System.out.println("nтк точка Б: " + resPointBNtkVK2500);
         }
         if (countPointAVK2500 != 0) {
-            System.out.println("Ntk point A: " + resSetPointA.add(listNtk.get(countPointAVK2500)));
+            System.out.println("Ntk point A: " + resSetPointAVK2500.add(listNtk.get(countPointAVK2500)));
 //            resPointDNtkVK2500 += listNtk.get(countPointDVK2500);
 //            System.out.println("nтк точка Д: " + resPointDNtkVK2500);
+        }
+        if (countPointBVK2500 != 0) {
+            System.out.println("Ntk point B: " + resSetPointBVK2500.add(listNtk.get(countPointBVK2500)));
+//            resPointANtkVK2500 += listNtk.get(countPointAVK2500);
+//            System.out.println("nтк точка А: " + resPointANtkVK2500);
         }
 //
         String strTVx = Arrays.toString(dataTvxVK2500.toArray()).replaceAll("[\\[\\]\\s]", " ");
         String str2TVx = strTVx.replaceAll(" , ", " ");
         String[] arrayTVx = str2TVx.split(" ");
         ArrayList<String> listTVx = new ArrayList<>(Arrays.asList(arrayTVx));
-        if (countPointBVK2500 != 0) {
-            System.out.println("Tvxb point B: " + resSetPointB.add(listTVx.get(countPointBVK2500)));
-            countPointBVK2500 = 0;
 
-//            resPointATvxBVK2500 += listTVx.get(countPointAVK2500);
-//            System.out.println("Твх_б точка А: " + resPointATvxBVK2500);
-        }
         if (countPointDVK2500 != 0) {
-            System.out.println("Tvxb point D: " + resSetPointD.add(listTVx.get(countPointDVK2500)));
+            System.out.println("Tvxb point D: " + resSetPointDVK2500.add(listTVx.get(countPointDVK2500)));
             countPointDVK2500 = 0;
             //coutn=0
 
@@ -204,59 +200,63 @@ public class VK2500NEW {
 //            System.out.println("Твх_б точка Б: " + resPointBTvxBVK2500);
         }
         if (countPointAVK2500 != 0) {
-            System.out.println("Tvx point A: " + resSetPointA.add(listTVx.get(countPointAVK2500)));
+            System.out.println("Tvx point A: " + resSetPointAVK2500.add(listTVx.get(countPointAVK2500)));
             countPointAVK2500 = 0;
-
-
 //            resPointDTvxBVK2500 += listTVx.get(countPointDVK2500);
 //            System.out.println("Твх_б точка Д: " + resPointDTvxBVK2500);
         }
+        if (countPointBVK2500 != 0) {
+            System.out.println("Tvxb point B: " + resSetPointBVK2500.add(listTVx.get(countPointBVK2500)));
+            countPointBVK2500 = 0;
 
-
-        for (String b : resSetPointB) {
-            System.out.println("b+" + b);
+//            resPointATvxBVK2500 += listTVx.get(countPointAVK2500);
+//            System.out.println("Твх_б точка А: " + resPointATvxBVK2500);
         }
-        for (String d : resSetPointD) {
+
+
+        for (String d : resSetPointDVK2500) {
             System.out.println("d+" + d);
         }
-        for (String a : resSetPointA) {
+        for (String a : resSetPointAVK2500) {
             System.out.println("a+" + a);
         }
-
-
+        for (String b : resSetPointBVK2500) {
+            System.out.println("b+" + b);
+        }
 
 
     }
+
     public static void setValueData() {
         try {
-            List<String> listPA = new ArrayList<>(resSetPointA);
-            List<String> listPB = new ArrayList<>(resSetPointB);
-            List<String> listPD = new ArrayList<>(resSetPointD);
+            List<String> listPD = new ArrayList<>(resSetPointDVK2500);
+            List<String> listPA = new ArrayList<>(resSetPointAVK2500);
+            List<String> listPB = new ArrayList<>(resSetPointBVK2500);
 
+            resPointDDavlSBarVK2500 += listPD.get(0);
             resPointADavlSBarVK2500 += listPA.get(0);
             resPointBDavlSBarVK2500 += listPB.get(0);
-            resPointDDavlSBarVK2500 += listPD.get(0);
 
+            resPointDNtkVK2500 += listPD.get(1);
             resPointANtkVK2500 += listPA.get(1);
             resPointBNtkVK2500 += listPB.get(1);
-            resPointDNtkVK2500 += listPD.get(1);
 
+            resPointDTvxBVK2500 += listPD.get(2);
             resPointATvxBVK2500 += listPA.get(2);
             resPointBTvxBVK2500 += listPB.get(2);
-            resPointDTvxBVK2500 += listPD.get(2);
 
-
+            System.out.println(resPointDDavlSBarVK2500);
             System.out.println(resPointADavlSBarVK2500);
             System.out.println(resPointBDavlSBarVK2500);
-            System.out.println(resPointDDavlSBarVK2500);
 
+            System.out.println(resPointDTvxBVK2500);
             System.out.println(resPointATvxBVK2500);
             System.out.println(resPointBTvxBVK2500);
-            System.out.println(resPointDTvxBVK2500);
 
+            System.out.println(resPointDNtkVK2500);
             System.out.println(resPointANtkVK2500);
             System.out.println(resPointBNtkVK2500);
-            System.out.println(resPointDNtkVK2500);
+
         } catch (Exception ignored) {
 
         }
