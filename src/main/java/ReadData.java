@@ -169,26 +169,13 @@ public class ReadData {
             PDFTextStripper stripper = new PDFTextStripper();
             allDataText = stripper.getText(document);
 
-            String selectedBox = (String) Example.comboBox.getSelectedItem();
-            assert selectedBox != null;
-            switch (selectedBox) {
-                case "ВК-2500":
-                    VK2500NEW.extractDataVK2500();
-                    PrintData.createTableVK2500();
-
-//                    writeTxtDataFromExplG();
-                    break;
-                case "ТВ3-117ВМ":
-//                    TV3117VM.extractDataTV3117Vm();
-                    TV3117NEW.extractDataTV3117Vm();
-                    PrintData.createTableTV3VM();
-                    break;
-                case "ВК-2500П":
-                    VK2500P.extractDataVK2500P();
-                    PrintData.createTableVK2500P();
-                    break;
+            if(Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+                VK2500NEW.extractDataVK2500();
+            } if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
+                TV3117NEW.extractDataTV3117Vm();
+            } if (Example.comboBox.getSelectedItem().equals("ВК-2500П")) {
+                VK2500P.extractDataVK2500P();
             }
-
 //            System.out.println(allDataText);
         } catch (IOException e) {
             throw new RuntimeException(e);

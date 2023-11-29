@@ -4,6 +4,7 @@ import java.awt.*;
 public class PrintData extends JFrame {
 
     public static void createTableTV3VM() {
+        TV3117NEW.setValueData();
 
         JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,8 +40,8 @@ public class PrintData extends JFrame {
     }
 
     public static void createTableVK2500() {
-
-//        VK2500NEW.setValueData();
+//        VK2500NEW.extractDataVK2500();
+        VK2500NEW.setValueData();
 
         JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

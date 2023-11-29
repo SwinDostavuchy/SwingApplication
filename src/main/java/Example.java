@@ -98,19 +98,20 @@ public class Example extends JFrame implements ActionListener {
         inputPointA.setLocation(210, 350);
         container.add(inputPointA);
 
-        selectFilesButton = new JButton("Выбрать PDF файлы");
-        selectFilesButton.setFont(new Font("Arial", Font.PLAIN, 15));
-        selectFilesButton.setSize(200, 20);
-        selectFilesButton.setLocation(30, 400);
-        selectFilesButton.addActionListener(this);
-        container.add(selectFilesButton);
-
         selectFileACT = new JButton("Выбрать акт сдачи");
         selectFileACT.setFont(new Font("Arial", Font.PLAIN, 15));
         selectFileACT.setSize(200, 20);
-        selectFileACT.setLocation(30, 435);
+        selectFileACT.setLocation(30, 400);
         selectFileACT.addActionListener(this);
         container.add(selectFileACT);
+
+        selectFilesButton = new JButton("Выбрать PDF файлы");
+        selectFilesButton.setFont(new Font("Arial", Font.PLAIN, 15));
+        selectFilesButton.setSize(200, 20);
+        selectFilesButton.setLocation(30, 435);
+        selectFilesButton.addActionListener(this);
+        container.add(selectFilesButton);
+
 
         selectFileTxt = new JButton("Выбрать файл .тхт");
         selectFileTxt.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -152,6 +153,34 @@ public class Example extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        selectFileACT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setMultiSelectionEnabled(true);
+                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                int ret = fileChooser.showOpenDialog(Example.this);
+                if (ret == JFileChooser.APPROVE_OPTION) {
+                    File[] filesAct = fileChooser.getSelectedFiles();
+                    for (File f : filesAct) {
+                        if (comboBox.getSelectedItem().equals("ВК-2500")) {
+                            VK2500NEW.readActVK2500(f);
+//                            VK2500NEW.setValueData();
+//                            PrintData.createTableVK2500();
+//                            textArea.setText("Точка С: " + ReadData.resultC);
+                        }
+                        if (comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
+                            TV3117NEW.readActTV3New(f);
+//                            TV3117NEW.setValueData();
+//                            PrintData.createTableTV3VM();
+//                            TV3117VM.readActTV3(f);
+//                            PrintData.createTableTV3VM();
+                        }
+                    }
+                }
+            }
+        });
+
         selectFilesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -184,34 +213,16 @@ public class Example extends JFrame implements ActionListener {
                     for (File listFile : listFiles) {
                         ReadData.read(listFile);
                     }
-                }
-            }
-        });
-
-        selectFileACT.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setMultiSelectionEnabled(true);
-                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                int ret = fileChooser.showOpenDialog(Example.this);
-                if (ret == JFileChooser.APPROVE_OPTION) {
-                    File[] filesAct = fileChooser.getSelectedFiles();
-                    for (File f : filesAct) {
-                        if (comboBox.getSelectedItem().equals("ВК-2500")) {
-                            VK2500NEW.readActVK2500(f);
-                            VK2500NEW.setValueData();
-                            PrintData.createTableVK2500();
-//                            textArea.setText("Точка С: " + ReadData.resultC);
-                        }
-                        if (comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
-                            TV3117NEW.readActTV3New(f);
-                            TV3117NEW.setValueData();
-                            PrintData.createTableTV3VM();
-//                            TV3117VM.readActTV3(f);
-//                            PrintData.createTableTV3VM();
-                        }
+                    if (Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+                        PrintData.createTableVK2500();
                     }
+                    if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
+                        PrintData.createTableTV3VM();
+                    }
+                    if (Example.comboBox.getSelectedItem().equals("ВК-2500П")) {
+                        PrintData.createTableVK2500P();
+                    }
+
                 }
             }
         });
