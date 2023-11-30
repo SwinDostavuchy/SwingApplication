@@ -22,6 +22,7 @@ public class Example extends JFrame implements ActionListener {
     public JButton selectFileTxt;
     public JTextArea textArea;
     public static JComboBox comboBox;
+    public static JComboBox comboBoxNumberSt;
 
     public static String pointA = "";
     public static String pointB = "";
@@ -30,10 +31,11 @@ public class Example extends JFrame implements ActionListener {
 
     private String[] engineList = {"ВК-2500", "ТВ3-117ВМ", "ВК-2500П"};
 
+    private String[] numberStends = {"5 стенд", "14 стенд", "15 стенд", "16 стенд", "18 стенд"};
 
     public Example() {
         setTitle("Считывание данных из PDF");
-        setBounds(300, 90, 600, 600);
+        setBounds(300, 90, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -43,6 +45,10 @@ public class Example extends JFrame implements ActionListener {
         comboBox = new JComboBox<>(engineList);
         comboBox.setBounds(50, 60, 100, 20);
         container.add(comboBox);
+
+        comboBoxNumberSt = new JComboBox(numberStends);
+        comboBoxNumberSt.setBounds(170, 60, 100, 20);
+        container.add(comboBoxNumberSt);
 
         labelTitle = new JLabel("Форма получения данных из PDF");
         labelTitle.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -113,27 +119,28 @@ public class Example extends JFrame implements ActionListener {
         container.add(selectFilesButton);
 
 
-        selectFileTxt = new JButton("Выбрать файл .тхт");
+        selectFileTxt = new JButton("Выбрать файл .txt");
         selectFileTxt.setFont(new Font("Arial", Font.PLAIN, 15));
         selectFileTxt.setSize(200, 20);
         selectFileTxt.setLocation(30, 470);
         selectFileTxt.addActionListener(this);
         container.add(selectFileTxt);
 
-//        labelOutData = new JLabel("Данные для эксплатуационных графиков АБД");
-//        labelOutData.setFont(new Font("Arial", Font.PLAIN, 20));
-//        labelOutData.setSize(300, 20);
-//        labelOutData.setLocation(500, 70);
-//        container.add(labelOutData);
+        labelOutData = new JLabel("Отредактированный .txt файл");
+        labelOutData.setFont(new Font("Arial", Font.PLAIN, 20));
+        labelOutData.setSize(300, 20);
+        labelOutData.setLocation(500, 70);
+        container.add(labelOutData);
 
-//        textArea = new JTextArea();
-//        textArea.setFont(new Font("Arial", Font.PLAIN, 15));
-//        textArea.setSize(400, 400);
-//        textArea.setLocation(450, 100);
-//        textArea.setLineWrap(true);
-//        textArea.setEditable(false);
-//        container.add(textArea);
+        textArea = new JTextArea();
+        textArea.setFont(new Font("Arial", Font.PLAIN, 15));
+        textArea.setSize(400, 400);
+        textArea.setLocation(450, 100);
+        textArea.setLineWrap(true);
+        textArea.setEditable(false);
+        container.add(textArea);
 
+        setVisible(true);
 
 //        textArea.setText(ReadData.resultC);
 //        textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
@@ -141,10 +148,9 @@ public class Example extends JFrame implements ActionListener {
 //        textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
 //                + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
 //                + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
-//                + " Точка С: " + ReadData.resultC);
-
-
-        setVisible(true);
+////                + " Точка С: " + ReadData.resultC);
+//
+//
     }
 
     public static void main(String[] args) {
@@ -163,7 +169,7 @@ public class Example extends JFrame implements ActionListener {
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     File[] filesAct = fileChooser.getSelectedFiles();
                     for (File f : filesAct) {
-                        if (comboBox.getSelectedItem().equals("ВК-2500")) {
+                        if (comboBox.getSelectedItem().equals("ВК-2500") && comboBoxNumberSt.getSelectedItem().equals("15 стенд")) {
                             VK2500NEW.readActVK2500(f);
 //                            VK2500NEW.setValueData();
 //                            PrintData.createTableVK2500();
@@ -213,7 +219,7 @@ public class Example extends JFrame implements ActionListener {
                     for (File listFile : listFiles) {
                         ReadData.read(listFile);
                     }
-                    if (Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+                    if (Example.comboBox.getSelectedItem().equals("ВК-2500") && comboBoxNumberSt.getSelectedItem().equals("15 стенд")) {
                         PrintData.createTableVK2500();
                     }
                     if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
