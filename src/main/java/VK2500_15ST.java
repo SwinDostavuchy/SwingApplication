@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class VK2500NEW {
+public class VK2500_15ST {
     public static int countPointAVK2500;
     public static int countPointBVK2500;
     public static int countPointDVK2500;
@@ -32,6 +32,15 @@ public class VK2500NEW {
     public static Set<String> resSetPointBVK2500 = new LinkedHashSet<>();
     public static Set<String> resSetPointDVK2500 = new LinkedHashSet<>();
 
+    public static List<String> listNumberZamACT = new ArrayList<String>();
+
+    public static void extractDataFromActVK2500St15() {
+        String[] dataTextAllFromActVk2500st15 = ReadData.allDataText.split("Инженер по испытаниям:");
+        for (String s : dataTextAllFromActVk2500st15) {
+            System.out.println(s);
+        }
+    }
+
     public static void readActVK2500(File file) {
         try (PDDocument document = PDDocument.load(file)) {
             PDFTextStripper stripper = new PDFTextStripper();
@@ -57,6 +66,11 @@ public class VK2500NEW {
                 }
             }
             System.out.println(sb);
+            String[] arrListNZ = sb.toString().split(", ");
+            listNumberZamACT.addAll(Arrays.asList(arrListNZ));
+            for (String st : listNumberZamACT) {
+                System.out.print(st);
+            }
 
             String strAllFactP = Arrays.toString(dataFactParam.toArray()).replaceAll("[\\[\\]\\s]", " ");
 //            System.out.println("first " + strAllFactP);
@@ -88,6 +102,12 @@ public class VK2500NEW {
         Set<String> dataTvxVK2500 = new LinkedHashSet<>();
         Set<String> dataNtkVK2500 = new LinkedHashSet<>();
 
+//        Set<String> dataACT = new LinkedHashSet<>();
+//
+//        if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500).contains("Энергетические параметры") &&
+//        Arrays.toString(dataTextAllVK2500).contains(listNumberZamACT.toString())) {
+//
+//        }
 
         if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500).contains("Энергетические параметры")) {
             for (int i = 0; i < dataTextAllVK2500.length; i++) {

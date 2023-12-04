@@ -19,6 +19,7 @@ public class Example extends JFrame implements ActionListener {
     private JLabel labelOutData;
     public JButton selectFilesButton;
     public JButton selectFileACT;
+    public JButton selectFileZamAct;
     public JButton selectFileTxt;
     public JTextArea textArea;
     public static JComboBox comboBox;
@@ -118,11 +119,17 @@ public class Example extends JFrame implements ActionListener {
         selectFilesButton.addActionListener(this);
         container.add(selectFilesButton);
 
+        selectFileZamAct = new JButton("Выбрать замеры акта сдачи");
+        selectFileZamAct.setFont(new Font("Arial", Font.PLAIN, 15));
+        selectFileZamAct.setSize(200, 20);
+        selectFileZamAct.setLocation(30, 470);
+        selectFileZamAct.addActionListener(this);
+        container.add(selectFileZamAct);
 
         selectFileTxt = new JButton("Выбрать файл .txt");
         selectFileTxt.setFont(new Font("Arial", Font.PLAIN, 15));
         selectFileTxt.setSize(200, 20);
-        selectFileTxt.setLocation(30, 470);
+        selectFileTxt.setLocation(30, 505);
         selectFileTxt.addActionListener(this);
         container.add(selectFileTxt);
 
@@ -170,7 +177,7 @@ public class Example extends JFrame implements ActionListener {
                     File[] filesAct = fileChooser.getSelectedFiles();
                     for (File f : filesAct) {
                         if (comboBox.getSelectedItem().equals("ВК-2500") && comboBoxNumberSt.getSelectedItem().equals("15 стенд")) {
-                            VK2500NEW.readActVK2500(f);
+                            VK2500_15ST.readActVK2500(f);
 //                            VK2500NEW.setValueData();
 //                            PrintData.createTableVK2500();
 //                            textArea.setText("Точка С: " + ReadData.resultC);
@@ -229,6 +236,23 @@ public class Example extends JFrame implements ActionListener {
                         PrintData.createTableVK2500P();
                     }
 
+                }
+            }
+        });
+
+        selectFileZamAct.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                int ret = fileChooser.showOpenDialog(Example.this);
+                if (ret == JFileChooser.APPROVE_OPTION) {
+                    File fileText = fileChooser.getSelectedFile();
+                    try {
+                        ReadData.readNumZamActVk(fileText);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });

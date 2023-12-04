@@ -41,7 +41,7 @@ public class PrintData extends JFrame {
 
     public static void createTableVK2500() {
 //        VK2500NEW.extractDataVK2500();
-        VK2500NEW.setValueData();
+        VK2500_15ST.setValueData();
 
         JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,12 +55,12 @@ public class PrintData extends JFrame {
         };
 
         String[][] data = {
-                {"График Д", VK2500NEW.resPointDNtkVK2500, VK2500NEW.resPointDTvxBVK2500, VK2500NEW.resPointDDavlSBarVK2500, Example.pointD},
-                {"График А", VK2500NEW.resPointANtkVK2500, VK2500NEW.resPointATvxBVK2500, VK2500NEW.resPointADavlSBarVK2500, Example.pointA},
-                {"График Б", VK2500NEW.resPointBNtkVK2500, VK2500NEW.resPointBTvxBVK2500, VK2500NEW.resPointBDavlSBarVK2500, Example.pointB},
-                {"График С", VK2500NEW.resultCVK2500Ntk, "15", "760", ""},
+                {"График Д", VK2500_15ST.resPointDNtkVK2500, VK2500_15ST.resPointDTvxBVK2500, VK2500_15ST.resPointDDavlSBarVK2500, Example.pointD},
+                {"График А", VK2500_15ST.resPointANtkVK2500, VK2500_15ST.resPointATvxBVK2500, VK2500_15ST.resPointADavlSBarVK2500, Example.pointA},
+                {"График Б", VK2500_15ST.resPointBNtkVK2500, VK2500_15ST.resPointBTvxBVK2500, VK2500_15ST.resPointBDavlSBarVK2500, Example.pointB},
+                {"График С", VK2500_15ST.resultCVK2500Ntk, "15", "760", ""},
         };
-        if (!VK2500NEW.resPointDNtkVK2500.isEmpty() && !VK2500NEW.resPointANtkVK2500.isEmpty() && !VK2500NEW.resPointBNtkVK2500.isEmpty() && !VK2500NEW.resultCVK2500Ntk.isEmpty()) {
+        if (!VK2500_15ST.resPointDNtkVK2500.isEmpty() && !VK2500_15ST.resPointANtkVK2500.isEmpty() && !VK2500_15ST.resPointBNtkVK2500.isEmpty() && !VK2500_15ST.resultCVK2500Ntk.isEmpty()) {
             JTable table = new JTable(data, columnNames);
 
             JScrollPane scrollPane = new JScrollPane(table);

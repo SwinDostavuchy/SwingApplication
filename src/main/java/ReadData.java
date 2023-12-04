@@ -30,6 +30,7 @@ public class ReadData {
     public static String resPointDNtk = "";
 
     public static String allDataText = "";
+    public static String allDataZamAct;
     public static String allDataACT = "";
     public static Set<String> dataNumZam = new LinkedHashSet<>();
     public static Set<String> dataDavlSBar = new LinkedHashSet<>();
@@ -163,6 +164,19 @@ public class ReadData {
 //            throw new RuntimeException(e);
 //        }
 //    }
+    public static void readNumZamActVk(File file) {
+        try{
+            PDDocument document = PDDocument.load(file);
+            PDFTextStripper stripper = new PDFTextStripper();
+            allDataZamAct = stripper.getText(document);
+            if(Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+                VK2500_15ST.extractDataFromActVK2500St15();
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void read(File file) {
         try (PDDocument document = PDDocument.load(file)) {
@@ -170,7 +184,7 @@ public class ReadData {
             allDataText = stripper.getText(document);
 
             if(Example.comboBox.getSelectedItem().equals("ВК-2500")) {
-                VK2500NEW.extractDataVK2500();
+                VK2500_15ST.extractDataVK2500();
             } if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
                 TV3117NEW.extractDataTV3117Vm();
             } if (Example.comboBox.getSelectedItem().equals("ВК-2500П")) {
