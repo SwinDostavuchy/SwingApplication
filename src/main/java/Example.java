@@ -177,7 +177,7 @@ public class Example extends JFrame implements ActionListener {
                     File[] filesAct = fileChooser.getSelectedFiles();
                     for (File f : filesAct) {
                         if (comboBox.getSelectedItem().equals("ВК-2500") && comboBoxNumberSt.getSelectedItem().equals("15 стенд")) {
-                            VK2500_15ST.readActVK2500(f);
+                            VK2500_15ST.readActVK250015St(f);
 //                            VK2500NEW.setValueData();
 //                            PrintData.createTableVK2500();
 //                            textArea.setText("Точка С: " + ReadData.resultC);

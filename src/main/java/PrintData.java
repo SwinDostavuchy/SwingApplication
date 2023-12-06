@@ -41,7 +41,7 @@ public class PrintData extends JFrame {
 
     public static void createTableVK2500() {
 //        VK2500NEW.extractDataVK2500();
-        VK2500_15ST.setValueData();
+        VK2500_15ST.setValueDataVK250015St();
 
         JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,12 +55,12 @@ public class PrintData extends JFrame {
         };
 
         String[][] data = {
-                {"График Д", VK2500_15ST.resPointDNtkVK2500, VK2500_15ST.resPointDTvxBVK2500, VK2500_15ST.resPointDDavlSBarVK2500, Example.pointD},
-                {"График А", VK2500_15ST.resPointANtkVK2500, VK2500_15ST.resPointATvxBVK2500, VK2500_15ST.resPointADavlSBarVK2500, Example.pointA},
-                {"График Б", VK2500_15ST.resPointBNtkVK2500, VK2500_15ST.resPointBTvxBVK2500, VK2500_15ST.resPointBDavlSBarVK2500, Example.pointB},
-                {"График С", VK2500_15ST.resultCVK2500Ntk, "15", "760", ""},
+                {"График Д", VK2500_15ST.resPointDNtkVK250015St, VK2500_15ST.resPointDTvxBVK250015St, VK2500_15ST.resPointDDavlSBarVK250015St, Example.pointD},
+                {"График А", VK2500_15ST.resPointANtkVK250015St, VK2500_15ST.resPointATvxBVK250015St, VK2500_15ST.resPointADavlSBarVK250015St, Example.pointA},
+                {"График Б", VK2500_15ST.resPointBNtkVK250015St, VK2500_15ST.resPointBTvxBVK250015St, VK2500_15ST.resPointBDavlSBarVK250015St, Example.pointB},
+                {"График С", VK2500_15ST.resultCVK2500Ntk15St, "15", "760", ""},
         };
-        if (!VK2500_15ST.resPointDNtkVK2500.isEmpty() && !VK2500_15ST.resPointANtkVK2500.isEmpty() && !VK2500_15ST.resPointBNtkVK2500.isEmpty() && !VK2500_15ST.resultCVK2500Ntk.isEmpty()) {
+        if (!VK2500_15ST.resPointDNtkVK250015St.isEmpty() && !VK2500_15ST.resPointANtkVK250015St.isEmpty() && !VK2500_15ST.resPointBNtkVK250015St.isEmpty() && !VK2500_15ST.resultCVK2500Ntk15St.isEmpty()) {
             JTable table = new JTable(data, columnNames);
 
             JScrollPane scrollPane = new JScrollPane(table);

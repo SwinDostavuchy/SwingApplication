@@ -184,7 +184,7 @@ public class ReadData {
             allDataText = stripper.getText(document);
 
             if(Example.comboBox.getSelectedItem().equals("ВК-2500")) {
-                VK2500_15ST.extractDataVK2500();
+                VK2500_15ST.extractDataVK250015St();
             } if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
                 TV3117NEW.extractDataTV3117Vm();
             } if (Example.comboBox.getSelectedItem().equals("ВК-2500П")) {
