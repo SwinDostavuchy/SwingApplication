@@ -144,6 +144,7 @@ public class VK2500_15ST {
         Set<String> Pmvx = new LinkedHashSet<>();
         Set<String> Pt1 = new LinkedHashSet<>();
         Set<String> Tmvx = new LinkedHashSet<>();
+        //koment
 
         if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500).contains("Энергетические параметры")
                 && Arrays.toString(dataTextAllVK2500).contains("№ замера " + listNumberZamACT15St.get(0))) {
