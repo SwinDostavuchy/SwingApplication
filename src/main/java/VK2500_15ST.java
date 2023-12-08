@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import static java.util.stream.Collectors.joining;
+
 public class VK2500_15ST {
     public static int countPointAVK250015St;
     public static int countPointBVK250015St;
@@ -34,6 +36,14 @@ public class VK2500_15ST {
     public static Set<String> resSetPointDVK250015St = new LinkedHashSet<>();
 
     public static List<String> listNumberZamACT15St = new ArrayList<String>();
+
+
+    public static String mGVK250015St = "";
+    public static String kr2_250015St = "";
+    public static String kr_250015St = "";
+    public static String mP_250015St = "";
+    public static String vzl_250015St = "";
+    public static String chr_250015St = "";
 
     public static void extractDataFromActVK2500St15() {
         String[] dataTextAllFromActVk2500st15 = ReadData.allDataText.split("Инженер по испытаниям:");
@@ -144,7 +154,13 @@ public class VK2500_15ST {
         Set<String> Pmvx = new LinkedHashSet<>();
         Set<String> Pt1 = new LinkedHashSet<>();
         Set<String> Tmvx = new LinkedHashSet<>();
-        //koment
+
+        List<String> listMg = new ArrayList<>();
+        List<String> list2Kr = new ArrayList<>();
+        List<String> listKr = new ArrayList<>();
+        List<String> listMp = new ArrayList<>();
+        List<String> listVzl = new ArrayList<>();
+        List<String> listChr = new ArrayList<>();
 
         if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500).contains("Энергетические параметры")
                 && Arrays.toString(dataTextAllVK2500).contains("№ замера " + listNumberZamACT15St.get(0))) {
@@ -193,7 +209,6 @@ public class VK2500_15ST {
                     if (strArr[j].startsWith("Bz4 СТ")) {
                         Bz4CT.add(strArr[j].substring(7));
                     }
-
                     if (strArr[j].startsWith("Pм вх")) {
                         Pmvx.add(strArr[j].substring(6));
                     }
@@ -206,8 +221,60 @@ public class VK2500_15ST {
                 }
             }
         }
-        for (String a : tmp) {
-            System.out.println("tmp result = " + a);
+//        String resultSetRejim = tmp.toString();
+//        resultSetRejim = resultSetRejim.replaceAll("\\,|\\[|\\]|\\s", " ");
+//        System.out.println("Строка получнная из сета режимов: " + resultSetRejim);
+        
+//        String[] arrTmp2 = tmp.toArray(new String[0]);
+
+        List<String> tmp2 = new ArrayList<>(tmp);
+        List<String> rejim2 = new ArrayList<>(Rejim);
+
+        List<String> bx1tk2 = new ArrayList<>(Bx1TK);
+        List<String> by1tk2 = new ArrayList<>(By1TK);
+        List<String> bz1tk2 = new ArrayList<>(Bz1TK);
+        List<String> bx1st2 = new ArrayList<>(Bx1CT);
+        List<String> by1st2 = new ArrayList<>(By1CT);
+        List<String> bz1st2 = new ArrayList<>(Bz1CT);
+
+        List<String> bx4tk2 = new ArrayList<>(Bx4TK);
+        List<String> by4tk2 = new ArrayList<>(By4TK);
+        List<String> bz4tk2 = new ArrayList<>(Bz4TK);
+        List<String> bx4st = new ArrayList<>(Bx4CT);
+        List<String> by4st = new ArrayList<>(By4CT);
+        List<String> bz4st = new ArrayList<>(Bz4CT);
+
+        List<String> pmvx2 = new ArrayList<>(Pmvx);
+        List<String> pt1_2 = new ArrayList<>(Pt1);
+        List<String> tmVx_2 = new ArrayList<>(Tmvx);
+
+        for (int w = 0; w < rejim2.size(); w++) {
+            if (rejim2.get(w).contains("МГ")) {
+                listMg.add(pmvx2.get(w));
+                listMg.add(pt1_2.get(w));
+                listMg.add(tmVx_2.get(w));
+            } if (rejim2.get(w).contains("2КР")) {
+                list2Kr.add(pmvx2.get(w));
+                list2Kr.add(pt1_2.get(w));
+                list2Kr.add(tmVx_2.get(w));
+            }
+        }
+        System.out.println("length listRejim: " + rejim2.size());
+        for (String h : listMg) {
+            System.out.println("listMg result data: " + h);
+        }
+        for (String kreser2 : list2Kr) {
+            System.out.println("list2kr result data: " + kreser2);
+        }
+//        Iterator<String> iterator = Rejim.iterator();
+//        while (iterator.hasNext()) {
+//            if (iterator.next().contains("МГ")) {
+//
+//            }
+//        }
+
+        for (String a : tmp2) {
+            System.out.println("tmp2arr result = " + a);
         }
         for (String h : Rejim) {
             System.out.println("Rejim: " + h);
@@ -216,9 +283,9 @@ public class VK2500_15ST {
             System.out.println("x1tk " + bx1tk);
         }
 
-        String pmvx = Arrays.toString(Pmvx.toArray()).replaceAll("[\\[\\]\\s]", " ");
-        String pmvx2 = pmvx.replaceAll(" , ", " ");
-        System.out.println("п масла входа результат: " + pmvx2);
+//        String pmvx = Arrays.toString(Pmvx.toArray()).replaceAll("[\\[\\]\\s]", " ");
+//        String pmvx2 = pmvx.replaceAll(" , ", " ");
+//        System.out.println("п масла входа результат: " + pmvx2);
 
 
         if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500)
