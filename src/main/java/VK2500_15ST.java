@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static java.util.stream.Collectors.joining;
-
 public class VK2500_15ST {
     public static int countPointAVK250015St;
     public static int countPointBVK250015St;
@@ -24,10 +22,6 @@ public class VK2500_15ST {
 
     public static String allDataTextVK2500 = "";
     public static String allDataACTVK250015St = "";
-
-    public static String resultA = "";
-    public static String resultB = "";
-    public static String resultD = "";
     public static String resultCVK2500Ntk15St = "";
     public static String numberZamAct = "";
 
@@ -42,52 +36,6 @@ public class VK2500_15ST {
     public static String setResultPt1Vk2500_15St = "";
     public static String setResultTmvxVk2500_15St = "";
 
-
-//    public static Set<String> tmp = new LinkedHashSet<>();
-//    public static Set<String> Rejim = new LinkedHashSet<>();
-//
-//    public static Set<String> Bx1TK = new LinkedHashSet<>();
-//    public static Set<String> By1TK = new LinkedHashSet<>();
-//    public static Set<String> Bz1TK = new LinkedHashSet<>();
-//
-//    public static Set<String> Bx1CT = new LinkedHashSet<>();
-//    public static Set<String> By1CT = new LinkedHashSet<>();
-//    public static Set<String> Bz1CT = new LinkedHashSet<>();
-//
-//    public static Set<String> Bx4TK = new LinkedHashSet<>();
-//    public static Set<String> By4TK = new LinkedHashSet<>();
-//    public static Set<String> Bz4TK = new LinkedHashSet<>();
-//
-//    public static Set<String> Bx4CT = new LinkedHashSet<>();
-//    public static Set<String> By4CT = new LinkedHashSet<>();
-//    public static Set<String> Bz4CT = new LinkedHashSet<>();
-//
-//    public static Set<String> Pmvx = new LinkedHashSet<>();
-//    public static Set<String> Pt1 = new LinkedHashSet<>();
-//    public static Set<String> Tmvx = new LinkedHashSet<>();
-
-//    public static List<String> tmp2 = new ArrayList<>(tmp);
-//    public static List<String> rejim2 = new ArrayList<>(Rejim);
-//
-//    public static List<String> bx1tk2 = new ArrayList<>(Bx1TK);
-//    public static List<String> by1tk2 = new ArrayList<>(By1TK);
-//    public static List<String> bz1tk2 = new ArrayList<>(Bz1TK);
-//    public static List<String> bx1st2 = new ArrayList<>(Bx1CT);
-//    public static List<String> by1st2 = new ArrayList<>(By1CT);
-//    public static List<String> bz1st2 = new ArrayList<>(Bz1CT);
-//
-//    public static List<String> bx4tk2 = new ArrayList<>(Bx4TK);
-//    public static List<String> by4tk2 = new ArrayList<>(By4TK);
-//    public static List<String> bz4tk2 = new ArrayList<>(Bz4TK);
-//    public static List<String> bx4st = new ArrayList<>(Bx4CT);
-//    public static List<String> by4st = new ArrayList<>(By4CT);
-//    public static List<String> bz4st = new ArrayList<>(Bz4CT);
-//
-//    public static List<String> pmvx2 = new ArrayList<>(Pmvx);
-//    public static List<String> pt1_2 = new ArrayList<>(Pt1);
-//    public static List<String> tmVx_2 = new ArrayList<>(Tmvx);
-//
-//    public static List<String> listMg = new ArrayList<>();
 
     public static void extractDataFromActVK2500St15() {
         String[] dataTextAllFromActVk2500st15 = ReadData.allDataText.split("Инженер по испытаниям:");
@@ -125,16 +73,6 @@ public class VK2500_15ST {
                     }
                 }
             }
-//            System.out.println(sb);
-//            String[] arrListNZ = sb.toString().split(", ");
-//            listNumberZamACT15St.addAll(Arrays.asList(arrListNZ));
-//            for (String st : listNumberZamACT15St) {
-//                System.out.print(st);
-//            }
-
-//            for (String ar : listNumberZamACT15St) {
-//                System.out.print(ar);
-//            }
 
             String strAllFactP = Arrays.toString(dataFactParam.toArray()).replaceAll("[\\[\\]\\s]", " ");
 //            System.out.println("first " + strAllFactP);
@@ -207,12 +145,6 @@ public class VK2500_15ST {
         Set<String> Pt1 = new LinkedHashSet<>();
         Set<String> Tmvx = new LinkedHashSet<>();
 
-        List<String> listMg = new ArrayList<>();
-        List<String> list2Kr = new ArrayList<>();
-        List<String> listKr = new ArrayList<>();
-        List<String> listMp = new ArrayList<>();
-        List<String> listVzl = new ArrayList<>();
-        List<String> listChr = new ArrayList<>();
 
         if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500).contains("Энергетические параметры")
                 && Arrays.toString(dataTextAllVK2500).contains("№ замера " + listNumberZamACT15St.get(0))) {
@@ -293,68 +225,6 @@ public class VK2500_15ST {
         setResultTmvxVk2500_15St += resultSetTmvx;
         System.out.println("Строка полученная из сета Tmvx: " + resultSetTmvx);
 
-//        String[] arrTmp2 = tmp.toArray(new String[0]);
-
-//        List<String> tmp2 = new ArrayList<>(tmp);
-//        List<String> rejim2 = new ArrayList<>(Rejim);
-//
-//        List<String> bx1tk2 = new ArrayList<>(Bx1TK);
-//        List<String> by1tk2 = new ArrayList<>(By1TK);
-//        List<String> bz1tk2 = new ArrayList<>(Bz1TK);
-//        List<String> bx1st2 = new ArrayList<>(Bx1CT);
-//        List<String> by1st2 = new ArrayList<>(By1CT);
-//        List<String> bz1st2 = new ArrayList<>(Bz1CT);
-//
-//        List<String> bx4tk2 = new ArrayList<>(Bx4TK);
-//        List<String> by4tk2 = new ArrayList<>(By4TK);
-//        List<String> bz4tk2 = new ArrayList<>(Bz4TK);
-//        List<String> bx4st = new ArrayList<>(Bx4CT);
-//        List<String> by4st = new ArrayList<>(By4CT);
-//        List<String> bz4st = new ArrayList<>(Bz4CT);
-//
-//        List<String> pmvx2 = new ArrayList<>(Pmvx);
-//        List<String> pt1_2 = new ArrayList<>(Pt1);
-//        List<String> tmVx_2 = new ArrayList<>(Tmvx);
-//
-//        for (int w = 0; w < rejim2.size(); w++) {
-//            if (rejim2.get(w).contains("МГ")) {
-//                listMg.add(pmvx2.get(w));
-//                listMg.add(pt1_2.get(w));
-//                listMg.add(tmVx_2.get(w));
-//            }
-//            if (rejim2.get(w).contains("2КР")) {
-//                list2Kr.add(pmvx2.get(w));
-//                list2Kr.add(pt1_2.get(w));
-//                list2Kr.add(tmVx_2.get(w));
-//            }
-//        }
-//        System.out.println("length listRejim: " + rejim2.size());
-//        for (String h : listMg) {
-//            System.out.println("listMg result data: " + h);
-//        }
-//        for (String kreser2 : list2Kr) {
-//            System.out.println("list2kr result data: " + kreser2);
-//        }
-////        Iterator<String> iterator = Rejim.iterator();
-////        while (iterator.hasNext()) {
-////            if (iterator.next().contains("МГ")) {
-////
-////            }
-////        }
-//
-//        for (String a : tmp2) {
-//            System.out.println("tmp2arr result = " + a);
-//        }
-//        for (String h : Rejim) {
-//            System.out.println("Rejim: " + h);
-//        }
-//        for (String bx1tk : Bx1TK) {
-//            System.out.println("x1tk " + bx1tk);
-//        }
-
-//        String pmvx = Arrays.toString(Pmvx.toArray()).replaceAll("[\\[\\]\\s]", " ");
-//        String pmvx2 = pmvx.replaceAll(" , ", " ");
-//        System.out.println("п масла входа результат: " + pmvx2);
 
 
         if (Arrays.toString(dataTextAllVK2500).contains(Example.numberEngine) && Arrays.toString(dataTextAllVK2500)
