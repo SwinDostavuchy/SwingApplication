@@ -20,7 +20,7 @@ public class VK2500_15ST {
     public static String resPointDDavlSBarVK250015St = "";
     public static String resPointDNtkVK250015St = "";
 
-    public static String allDataTextVK2500 = "";
+//    public static String allDataTextVK2500 = "";
     public static String allDataACTVK250015St = "";
     public static String resultCVK2500Ntk15St = "";
     public static String numberZamAct = "";
@@ -29,7 +29,7 @@ public class VK2500_15ST {
     public static Set<String> resSetPointBVK250015St = new LinkedHashSet<>();
     public static Set<String> resSetPointDVK250015St = new LinkedHashSet<>();
 
-    public static List<String> listNumberZamACT15St = new ArrayList<String>();
+    public static List<String> listNumberZamACT15St = new ArrayList<>();
 
     public static String setResultRejimVk2500_15St = "";
     public static String setResultPmvxVk2500_15St = "";
@@ -52,7 +52,7 @@ public class VK2500_15ST {
 
             String[] dataTextAct = allDataACTVK250015St.split("Инженер по испытаниям:");
 
-            StringBuilder sb = new StringBuilder();
+//            StringBuilder sb = new StringBuilder();
             Set<String> set = new LinkedHashSet<>();
             Set<String> dataFactParam = new LinkedHashSet<>();
             String c = "";
