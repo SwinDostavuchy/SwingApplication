@@ -36,12 +36,12 @@ public class PrintData extends JFrame {
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         }
-
     }
 
     public static void createTableVK2500() {
 //        VK2500NEW.extractDataVK2500();
         VK2500_15ST.setValueDataVK250015St();
+        DataForTxtFile.txtVk2500_15St();
 
         JFrame frame = new JFrame("Исходные данные для построения экспл. графиков");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
