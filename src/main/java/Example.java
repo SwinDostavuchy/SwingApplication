@@ -19,7 +19,6 @@ public class Example extends JFrame implements ActionListener {
     private JLabel labelOutData;
     public JButton selectFilesButton;
     public JButton selectFileACT;
-    public JButton selectFileZamAct;
     public JButton selectFileTxt;
     public JTextArea textArea;
     public static JComboBox comboBox;
@@ -32,7 +31,7 @@ public class Example extends JFrame implements ActionListener {
 
     private String[] engineList = {"ВК-2500", "ТВ3-117ВМ", "ВК-2500П"};
 
-    private String[] numberStends = {"5 стенд", "14 стенд", "15 стенд", "16 стенд", "18 стенд"};
+    private String[] numberStends = {"15 стенд", "14 стенд", "5 стенд", "16 стенд", "18 стенд"};
 
     public Example() {
         setTitle("Считывание данных из PDF");
@@ -119,17 +118,10 @@ public class Example extends JFrame implements ActionListener {
         selectFilesButton.addActionListener(this);
         container.add(selectFilesButton);
 
-        selectFileZamAct = new JButton("Выбрать замеры акта сдачи");
-        selectFileZamAct.setFont(new Font("Arial", Font.PLAIN, 15));
-        selectFileZamAct.setSize(200, 20);
-        selectFileZamAct.setLocation(30, 470);
-        selectFileZamAct.addActionListener(this);
-        container.add(selectFileZamAct);
-
         selectFileTxt = new JButton("Выбрать файл .txt");
         selectFileTxt.setFont(new Font("Arial", Font.PLAIN, 15));
         selectFileTxt.setSize(200, 20);
-        selectFileTxt.setLocation(30, 505);
+        selectFileTxt.setLocation(30, 470);
         selectFileTxt.addActionListener(this);
         container.add(selectFileTxt);
 
@@ -144,20 +136,10 @@ public class Example extends JFrame implements ActionListener {
         textArea.setSize(400, 400);
         textArea.setLocation(450, 100);
         textArea.setLineWrap(true);
-        textArea.setEditable(false);
+        textArea.setEditable(true);
         container.add(textArea);
 
         setVisible(true);
-
-//        textArea.setText(ReadData.resultC);
-//        textArea.setText("Точка A ntk: " + ReadData.resPointANtk);
-//        textArea.setText("Точка A tvx_bж: " + ReadData.resPointATvxB);
-//        textArea.setText("Данные для точки А: " + "\n" + "                     Ph(мм.рт.ст.): "
-//                + ReadData.resPointADavlSBar + "\n" + "                     ntk: "
-//                + ReadData.resPointANtk + "\n" + "                     tvx_bж:  " + ReadData.resPointATvxB
-////                + " Точка С: " + ReadData.resultC);
-//
-//
     }
 
     public static void main(String[] args) {
@@ -236,23 +218,6 @@ public class Example extends JFrame implements ActionListener {
                         PrintData.createTableVK2500P();
                     }
 
-                }
-            }
-        });
-
-        selectFileZamAct.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                int ret = fileChooser.showOpenDialog(Example.this);
-                if (ret == JFileChooser.APPROVE_OPTION) {
-                    File fileText = fileChooser.getSelectedFile();
-                    try {
-                        ReadData.readNumZamActVk(fileText);
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
                 }
             }
         });

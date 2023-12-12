@@ -3,8 +3,14 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ReadData {
     private String davlSBar;
@@ -104,22 +110,51 @@ public class ReadData {
 //    }
 
     public static void readTxt(File file) throws IOException {
-        try (FileInputStream fis = new FileInputStream(file);
-             InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
-             BufferedReader reader = new BufferedReader(isr)
-        ) {
-
-            String str;
-            while ((str = reader.readLine()) != null) {
-                System.out.println(str);
+//        Path actDb = Paths.get(file.getAbsolutePath());
+//        Path actDbNew = Paths.get("C:\\Users\\User\\Desktop\\компоненты винды\\data\\actdb_220523_020312__new.txt");
+//        try {
+//            Files.copy(actDb, actDbNew, StandardCopyOption.REPLACE_EXISTING);
+//            System.out.println("File is copied successfull!!!!");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        try {
+            String filePath = file.getPath();
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                stringBuilder.append(line + "\n");
+                line = reader.readLine();
             }
-
+            String fileContent = stringBuilder.toString();
+            reader.close();
+            String[] arr = fileContent.split("\n");
+            for (String s : arr) {
+                System.out.println(s);
+            }
+//            System.out.println(fileContent);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-//    public static void readActVK2500P(File file) {
+
+//        try (FileInputStream fis = new FileInputStream(String.valueOf(actDbNew));
+//             InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+//             BufferedReader reader = new BufferedReader(isr)
+//        ) {
+//
+//            String str;
+//            while ((str = reader.readLine()) != null) {
+//                System.out.println(str);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+    //    public static void readActVK2500P(File file) {
 //        try (PDDocument document = PDDocument.load(file)) {
 //            PDFTextStripper stripper = new PDFTextStripper();
 //            allDataACT = stripper.getText(document);
@@ -165,11 +200,11 @@ public class ReadData {
 //        }
 //    }
     public static void readNumZamActVk(File file) {
-        try{
+        try {
             PDDocument document = PDDocument.load(file);
             PDFTextStripper stripper = new PDFTextStripper();
             allDataZamAct = stripper.getText(document);
-            if(Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+            if (Example.comboBox.getSelectedItem().equals("ВК-2500")) {
                 VK2500_15ST.extractDataFromActVK2500St15();
             }
 
@@ -183,11 +218,13 @@ public class ReadData {
             PDFTextStripper stripper = new PDFTextStripper();
             allDataText = stripper.getText(document);
 
-            if(Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+            if (Example.comboBox.getSelectedItem().equals("ВК-2500")) {
                 VK2500_15ST.extractDataVK250015St();
-            } if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
+            }
+            if (Example.comboBox.getSelectedItem().equals("ТВ3-117ВМ")) {
                 TV3117NEW.extractDataTV3117Vm();
-            } if (Example.comboBox.getSelectedItem().equals("ВК-2500П")) {
+            }
+            if (Example.comboBox.getSelectedItem().equals("ВК-2500П")) {
                 VK2500P.extractDataVK2500P();
             }
 //            System.out.println(allDataText);
