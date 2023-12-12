@@ -13,6 +13,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ReadData {
+    private static File sInputFile;
+    private static File sTemporaryFile;
+
+    private static BufferedReader sFileReader;
+    private static BufferedWriter sFileWriter;
+
     private String davlSBar;
     private String tVx;
     private String ntk;
@@ -110,6 +116,34 @@ public class ReadData {
 //    }
 
     public static void readTxt(File file) throws IOException {
+
+        sInputFile = new File(file.getPath());
+        sTemporaryFile = new File(file.getPath() + "new");
+
+        sFileReader = new BufferedReader(new FileReader(sInputFile));
+        sFileWriter = new BufferedWriter(new FileWriter(sTemporaryFile));
+
+        int stringCounter = 1;
+        String currentFileString;
+        while ((currentFileString = sFileReader.readLine()) != null) {
+            if (stringCounter == 10) {
+                String[] s10 = sFileReader.toString().replaceAll("\\s+", " ").split(" ");
+                for (int i = s10.length-1; i > 3; i--) {
+                    s10[i].replace(s10[i],"new1");
+                }
+//                sFileWriter.write("New Data");
+            } else {
+                sFileWriter.write(currentFileString);
+            }
+            sFileWriter.newLine();
+            stringCounter++;
+        }
+        sFileReader.close();
+        sFileWriter.close();
+
+        sInputFile.delete();
+        sTemporaryFile.renameTo(sInputFile);
+    }
 //        Path actDb = Paths.get(file.getAbsolutePath());
 //        Path actDbNew = Paths.get("C:\\Users\\User\\Desktop\\компоненты винды\\data\\actdb_220523_020312__new.txt");
 //        try {
@@ -118,26 +152,25 @@ public class ReadData {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        try {
-            String filePath = file.getPath();
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = reader.readLine();
-            while (line != null) {
-                stringBuilder.append(line + "\n");
-                line = reader.readLine();
-            }
-            String fileContent = stringBuilder.toString();
-            reader.close();
-            String[] arr = fileContent.split("\n");
-            for (String s : arr) {
-                System.out.println(s);
-            }
-//            System.out.println(fileContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//        try {
+//            String filePath = file.getPath();
+//            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+//            StringBuilder stringBuilder = new StringBuilder();
+//            String line = reader.readLine();
+//            while (line != null) {
+//                stringBuilder.append(line + "\n");
+//                line = reader.readLine();
+//            }
+//            String fileContent = stringBuilder.toString();
+//            reader.close();
+//            String[] arr = fileContent.split("\n");
+//            for (int i = 0; i < arr.length; i++) {
+//
+//            }
+////            System.out.println(fileContent);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        try (FileInputStream fis = new FileInputStream(String.valueOf(actDbNew));
@@ -199,19 +232,19 @@ public class ReadData {
 //            throw new RuntimeException(e);
 //        }
 //    }
-    public static void readNumZamActVk(File file) {
-        try {
-            PDDocument document = PDDocument.load(file);
-            PDFTextStripper stripper = new PDFTextStripper();
-            allDataZamAct = stripper.getText(document);
-            if (Example.comboBox.getSelectedItem().equals("ВК-2500")) {
-                VK2500_15ST.extractDataFromActVK2500St15();
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public static void readNumZamActVk(File file) {
+//        try {
+//            PDDocument document = PDDocument.load(file);
+//            PDFTextStripper stripper = new PDFTextStripper();
+//            allDataZamAct = stripper.getText(document);
+//            if (Example.comboBox.getSelectedItem().equals("ВК-2500")) {
+//                VK2500_15ST.extractDataFromActVK2500St15();
+//            }
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public static void read(File file) {
         try (PDDocument document = PDDocument.load(file)) {
